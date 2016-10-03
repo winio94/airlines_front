@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="mainModule">
+	<head>
+		<title>Airlines</title>
+		<script src="resource/angular.min.js"></script>
+		<script src="src/js/app.js"></script>
+    <script src="src/js/controller/FlightCtrl.js"></script>
+    <script src="src/js/controller/CustomerCtrl.js"></script>
+	</head>
+
+	<body>
+		<div ng-controller="FlightCtrl">
+      <table border="1">
+        <tr ng-repeat="flight in flights">
+            <td>flight number : {{flight.flightNumber}}</td>
+            <td>flight departure : {{flight.departureDate}}</td>
+        </tr>
+      </table>
+		</div>
+		<div ng-controller="CustomerCtrl">
+      <table border="1">
+        <tr ng-repeat="customer in customers">
+            <td>customer first name : {{customer.firstName}}</td>
+            <td>customer last name : {{customer.lastName}}</td>
+        </tr>
+      </table>
+		</div>
+	</body>
+</html>
