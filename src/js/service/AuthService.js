@@ -1,4 +1,4 @@
-app.service('authService', ['$http', function($http){
+app.service('AuthService', ['$http', function($http){
   var o = {
     authorizationHeader : "",
     isAuthenticated : false,

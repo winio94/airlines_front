@@ -3,7 +3,7 @@ var app = angular.module("mainModule", ['ngRoute']);
 app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', function($q, $location,$injector){
 	return {
 		request: function (config) {
-			var authService = $injector.get('authService');
+			var authService = $injector.get('AuthService');
 			var headers = authService.getAuthorizationHeader().authorization;
 			config.headers['Authorization'] = headers;
 			return config;

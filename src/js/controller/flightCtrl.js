@@ -1,5 +1,5 @@
-app.controller("FlightCtrl", function($scope, $http){
-  $http.get('http://localhost:8080/flights')
+app.controller("FlightCtrl", function($scope, $http, PathService){
+  $http.get(PathService.getPath() + 'flights')
     .then(function(response) {
         $scope.flights = response.data._embedded.flights;
     });
