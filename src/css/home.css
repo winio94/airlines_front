@@ -52,3 +52,37 @@ body {
   position:absolute;
   top:100px;
 }
+
+.flightSearchContainer {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 30%;
+  left: 25%;
+  margin-top: 100px;
+  background: rgba(95,99,131, .6);
+  color: #AEDEE7;
+}
+
+#flight_form {
+  padding: 10px;
+}
+
+.flightType ul {
+  padding: 0px;
+}
+
+.flightType li {
+  margin : 0 auto !important;
+  display: inline;
+  padding-right: 20px;
+}
+
+.form-group i {
+  font-size:20px;
+  color: #AEDEE7;
+}
+
+.flightSwap {
+  padding:3px;
+}
