@@ -8,6 +8,7 @@ function($scope, $rootScope, $http, $location, AuthService, PathService) {
       if (data.name) {
         $rootScope.authenticated = true;
         AuthService.setAuthorizationHeader($rootScope.headers);
+        $scope.checkIfAdmin(data.authorities);
       } else {
         $rootScope.authenticated = false;
       }
@@ -44,10 +45,22 @@ function($scope, $rootScope, $http, $location, AuthService, PathService) {
   $scope.logout = function() {
     $http.post('logout', {}).success(function() {
       $rootScope.authenticated = false;
+      $rootScope.isAdmin = false;
       AuthService.setAuthorizationHeader("");
       $location.path("/");
     }).error(function(data) {
       $rootScope.authenticated = false;
+      $rootScope.isAdmin = false;
     });
+  };
+
+  $scope.checkIfAdmin = function(authorities) {
+    if(AuthService.checkIfAdmin(authorities)) {
+      console.log("IS ADMIN");
+      $rootScope.isAdmin = true;
+    } else {
+      console.log("IS USER");
+      $rootScope.isAdmin = false;
+    }
   };
 }]);

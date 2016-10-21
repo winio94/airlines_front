@@ -37,7 +37,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#home"><i class="fa fa-home" style="font-size:40px;"></i> Home</a></li>
 						<li><a href="#flights"><i class="fa fa-plane" style="font-size:40px;"></i> Flights</a></li>
-						<li><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> Customers</a></li>
+						<li ng-show="isAdmin"><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> Customers</a></li>
 						<li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out" style="font-size:40px;"></i> Logout</a></li>
 						<li ng-hide="authenticated"><a class="auth" href="#/login" onClick="openLoginForm()"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
 					</ul>
