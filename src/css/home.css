@@ -30,3 +30,12 @@ body {
   background-color: #efefef;
   text-align: center;
 }
+
+.navbar-header {
+  margin-top: 10px;
+  float: left;
+}
+
+.navbar-brand {
+  font-size: 25px;
+}

@@ -6,7 +6,7 @@ app.service('PathService', function() {
   };
 
   o.getPath = function() {
-    return o.digitalOceanRestPath;
+    return o.localhostPath;
   };
 
   return o;

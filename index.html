@@ -28,14 +28,14 @@
 			<nav class="navbar navbar-default">
 				<div class="container">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="/">Airlines Reservation System</a>
+						<a class="navbar-brand" href="#home">Airlines Reservation System</a>
 					</div>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="#flights"><i class="fa fa-shield"></i> Flights</a></li>
-						<li><a href="#/login">login</a></li>
-						<li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
-						<li><a href="#customers"><i class="fa fa-comment"></i> Customers</a></li>
+						<li><a href="#home"><i class="fa fa-home" style="font-size:40px;"></i> Home</a></li>
+						<li><a href="#flights"><i class="fa fa-plane" style="font-size:40px;"></i> Flights</a></li>
+						<li><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> Customers</a></li>
+						<li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out" style="font-size:40px;"></i> Logout</a></li>
+						<li ng-hide="authenticated"><a class="auth" href="#/login"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
 					</ul>
 				</div>
 			</nav>
