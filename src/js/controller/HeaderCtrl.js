@@ -56,10 +56,8 @@ function($scope, $rootScope, $http, $location, AuthService, PathService) {
 
   $scope.checkIfAdmin = function(authorities) {
     if(AuthService.checkIfAdmin(authorities)) {
-      console.log("IS ADMIN");
       $rootScope.isAdmin = true;
     } else {
-      console.log("IS USER");
       $rootScope.isAdmin = false;
     }
   };

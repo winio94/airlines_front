@@ -41,12 +41,9 @@ app.service('AuthService', ['$http', function($http){
 
   o.checkIfAdmin = function(authorities) {
     if(authorities) {
-      for(var i = 0; i < authorities.length; i++) {
-        if (authorities[i].authority == o.adminAuthority) {
-          return true;
-        }
-      }
-      return false;
+      return authorities.find(function(ele) {
+        return ele.authority === o.adminAuthority;
+      });
     }
     return false;
   };
