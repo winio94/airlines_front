@@ -8,6 +8,7 @@
 
 	<script src="resource/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 	<script src="src/js/app.js"></script>
 	<script src="src/js/controller/CustomerCtrl.js"></script>
@@ -15,6 +16,9 @@
 	<script src="src/js/controller/HeaderCtrl.js"></script>
 	<script src="src/js/service/authService.js"></script>
 	<script src="src/js/service/pathService.js"></script>
+	<script src="src/js/jquery/login.js">
+
+	</script>
 	<style type="text/css">
 	[ng\:cloak], [ng-cloak], .ng-cloak {
 		display: none !important;
@@ -35,7 +39,7 @@
 						<li><a href="#flights"><i class="fa fa-plane" style="font-size:40px;"></i> Flights</a></li>
 						<li><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> Customers</a></li>
 						<li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out" style="font-size:40px;"></i> Logout</a></li>
-						<li ng-hide="authenticated"><a class="auth" href="#/login"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
+						<li ng-hide="authenticated"><a class="auth" href="#/login" onClick="openLoginForm()"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
 					</ul>
 				</div>
 			</nav>

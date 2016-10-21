@@ -39,3 +39,15 @@ body {
 .navbar-brand {
   font-size: 25px;
 }
+
+#login_form {
+  display:none;
+}
+
+#login_container
+{
+  width: 10%;
+  left: 45%;
+  position:absolute;
+  top:100px;
+}
