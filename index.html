@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 	<link rel="stylesheet" href="src/css/home.css" />
+	<link rel="stylesheet" href="src/css/footer-distributed.css" />
 
 	<script src="resource/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
@@ -16,40 +17,21 @@
 	<script src="src/js/controller/HeaderCtrl.js"></script>
 	<script src="src/js/service/authService.js"></script>
 	<script src="src/js/service/pathService.js"></script>
-	<script src="src/js/jquery/login.js">
-
-	</script>
+	<script src="src/js/jquery/login.js"></script>
+	<script src="src/js/directives/footer.js"></script>
+	<script src="src/js/directives/header.js"></script>
+	<script src="src/js/directives/content.js"></script>
 	<style type="text/css">
 	[ng\:cloak], [ng-cloak], .ng-cloak {
 		display: none !important;
 	}
 	</style>
 </head>
-
 <body ng-controller="HeaderCtrl" ng-cloak class="ng-cloak">
 	<div class="wrapper">
-		<div class="header">
-			<nav class="navbar navbar-default">
-				<div class="container">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="#home">Airlines Reservation System</a>
-					</div>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home"><i class="fa fa-home" style="font-size:40px;"></i> Home</a></li>
-						<li><a href="#flights"><i class="fa fa-plane" style="font-size:40px;"></i> Flights</a></li>
-						<li ng-show="isAdmin"><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> Customers</a></li>
-						<li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out" style="font-size:40px;"></i> Logout</a></li>
-						<li ng-hide="authenticated"><a class="auth" href="#/login" onClick="openLoginForm()"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-		<div id="content">
-			<div ng-view></div>
-		</div>
-		<div class=footer>
-			<p>Created by Michal Winnicki 2016</p>
-		</div>
+		<ng-header></ng-header>
+		<ng-content></ng-content>
+		<ng-footer></ng-footer>
 	</div>
 </body>
 </html>
