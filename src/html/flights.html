@@ -1,3 +1,13 @@
+LISTA LOTÓW
+<div ng-controller="FlightCtrl">
+  <table border="1">
+    <tr ng-repeat="flight in flights">
+      <td>flight number : {{flight.flightNumber}}</td>
+      <td>flight departure : {{flight.departureDate}}</td>
+    </tr>
+  </table>
+</div>
+
 <div class="flightSearchContainer">
   <form id="flight_form" role="form" ng-submit="searchFlight()">
     <div class="form_search_part">
@@ -17,45 +27,62 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="from">From</label>
-            <input type="text" class="form-control" id="from" name="from" ng-model="fligtCredentials.from"/>
-          </div>
-          <div class="form-group flightSwapContainer">
-            <label for="flightSwap"></label>
-            <div class="flightSwap">
-              <a href="" ng-click="swapFlightLocations()">
-                <i class="fa fa-exchange"></i>
-              </a>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="to">To</label>
-            <input type="text" class="form-control" id="to" name="to" ng-model="fligtCredentials.to"/>
+            <ui-select ng-model="fligtCredentials.from">
+              <ui-select-match>
+                <span ng-bind="$select.selected.city"></span>
+              </ui-select-match>
+              <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
+                <span ng-bind="airport.city"></span>
+              </ui-select-choices>
+            </ui-select>
+          </select>
+        </div>
+        <div class="form-group flightSwapContainer">
+          <label for="flightSwap"></label>
+          <div class="flightSwap">
+            <a href="" ng-click="swapFlightLocations()">
+              <i class="fa fa-exchange"></i>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="flightTime">
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="departure">Depart</label>
-            <input type="text" class="form-control" id="departure" name="departure" ng-model="fligtCredentials.departure"/>
-          </div>
-          <div class="form-group">
-            <label for="return">Return</label>
-            <input type="text" class="form-control" id="return" name="return" ng-model="fligtCredentials.return"/>
-          </div>
-          <div class="form-group flightClass">
-            <label for="class">Cabin Class & Travellers</label>
-            <input type="text" class="form-control" id="class" name="class" ng-model="fligtCredentials.class"/>
-          </div>
+        <div class="form-group">
+          <label for="to">To</label>
+          <ui-select ng-model="fligtCredentials.to">
+            <ui-select-match>
+              <span ng-bind="$select.selected.city"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
+              <span ng-bind="airport.city"></span>
+            </ui-select-choices>
+          </ui-select>
         </div>
       </div>
     </div>
-    <div class="form_button_part" >
-      <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+    <div class="flightTime">
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="departure">Depart</label>
+          <input type="text" class="form-control" id="departure" name="departure" ng-model="fligtCredentials.departure"/>
+        </div>
+        <div class="form-group">
+          <label for="return">Return</label>
+          <input type="text" class="form-control" id="return" name="return" ng-model="fligtCredentials.return"/>
+        </div>
+        <div class="form-group flightClass">
+          <label for="class">Cabin Class & Travellers</label>
+          <input type="text" class="form-control" id="class" name="class" ng-model="fligtCredentials.class"/>
+        </div>
+      </div>
     </div>
-    <div style="clear:both;"></div>
-  </form>
-  <div class="alert alert-danger" ng-show="error">
-    There was a problem searching flight. Please try again.
   </div>
+  <div class="form_button_part" >
+    <button type="button" class="btn btn-info btn-circle btn-lg">
+      <i class="glyphicon glyphicon-ok"></i>
+    </button>
+  </div>
+  <div style="clear:both;"></div>
+</form>
+<div class="alert alert-danger" ng-show="error">
+  There was a problem searching flight. Please try again.
+</div>
 </div>
