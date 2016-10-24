@@ -12,4 +12,15 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
       $scope.airports = response;
     })
   };
+
+  $scope.selectedAirport = {
+    from : null,
+    to: null
+  };
+  
+  $scope.swapFlightLocations = function() {
+    var temp = $scope.selectedAirport.from;
+    $scope.selectedAirport.from = $scope.selectedAirport.to;
+    $scope.selectedAirport.to = temp;
+  };
 }]);

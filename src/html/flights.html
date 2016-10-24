@@ -27,7 +27,7 @@ LISTA LOTÓW
         <div class="form-inline">
           <div class="form-group">
             <label for="from">From</label>
-            <ui-select ng-model="fligtCredentials.from">
+            <ui-select ng-model="selectedAirport.from">
               <ui-select-match>
                 <span ng-bind="$select.selected.city"></span>
               </ui-select-match>
@@ -47,7 +47,7 @@ LISTA LOTÓW
         </div>
         <div class="form-group">
           <label for="to">To</label>
-          <ui-select ng-model="fligtCredentials.to">
+          <ui-select ng-model="selectedAirport.to">
             <ui-select-match>
               <span ng-bind="$select.selected.city"></span>
             </ui-select-match>
@@ -62,11 +62,11 @@ LISTA LOTÓW
       <div class="form-inline">
         <div class="form-group">
           <label for="departure">Depart</label>
-          <input type="text" class="form-control" id="departure" name="departure" ng-model="fligtCredentials.departure"/>
+          <input id="departure" type="text" class="form-control" datepicker-popup="dd.mm.yyyy" ng-model="fligtCredentials.departure" ng-required="true" close-text="Close" />
         </div>
         <div class="form-group">
           <label for="return">Return</label>
-          <input type="text" class="form-control" id="return" name="return" ng-model="fligtCredentials.return"/>
+          <input id="return" type="text" class="form-control" datepicker-popup="dd.mm.yyyy" ng-model="fligtCredentials.return" ng-required="true" close-text="Close" />
         </div>
         <div class="form-group flightClass">
           <label for="class">Cabin Class & Travellers</label>

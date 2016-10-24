@@ -1,4 +1,4 @@
-var app = angular.module("mainModule", ['ngRoute','ui.select', 'ngSanitize']);
+var app = angular.module("mainModule", ['ngRoute','ui.select', 'ngSanitize', 'ui.bootstrap']);
 
 app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', function($q, $location,$injector){
 	return {
