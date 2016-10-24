@@ -14,11 +14,11 @@ LISTA LOTÓW
       <div class="flightType">
         <ul>
           <li>
-            <input type="radio" id="return-option" name="selector">
+            <input type="radio" id="return-option" name="selector" ng-click="returnFlight=true">
             <label for="return-option">Return</label>
           </li>
           <li>
-            <input type="radio" id="one-way-option" name="selector">
+            <input type="radio" id="one-way-option" name="selector" ng-click="returnFlight=false" checked>
             <label for="one-way-option">One way</label>
           </li>
         </ul>
@@ -66,7 +66,7 @@ LISTA LOTÓW
         </div>
         <div class="form-group">
           <label for="return">Return</label>
-          <input id="return" type="text" class="form-control" datepicker-popup="dd.mm.yyyy" ng-model="fligtCredentials.return" ng-required="true" close-text="Close" />
+          <input id="return" type="text" class="form-control" datepicker-popup="dd.mm.yyyy" ng-disabled="!returnFlight" ng-model="fligtCredentials.return" ng-required="true" close-text="Close" />
         </div>
         <div class="form-group flightClass">
           <label for="class">Cabin Class & Travellers</label>
