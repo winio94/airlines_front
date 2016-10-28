@@ -6,6 +6,8 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
   $scope.selectedFlight = {
     from : null,
     to: null,
+    departure: null,
+    return: null,
     flightClass: null,
     passengers: 1
   };
@@ -33,5 +35,14 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
     $scope.isClassEnabled = !$scope.isClassEnabled;
   };
 
+  $scope.disableReturnDate = function() {
+    $scope.returnFlight=false;
+    $scope.selectedFlight.return=null
+  }
+
+  $scope.searchFlight = function(flightCredentials) {
+    console.log("FLIGHT CREDENTIALS : ", flightCredentials);
+  };
+  
   $scope.getFlights();
 }]);

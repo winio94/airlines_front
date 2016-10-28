@@ -8,7 +8,7 @@
             <label for="return-option">Return</label>
           </li>
           <li>
-            <input type="radio" id="one-way-option" name="selector" ng-click="returnFlight=false" checked>
+            <input type="radio" id="one-way-option" name="selector" ng-click="disableReturnDate()" checked>
             <label for="one-way-option">One way</label>
           </li>
         </ul>
@@ -51,11 +51,11 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="departure">Depart</label>
-            <input id="departure" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="fligtCredentials.departure" ng-required="true" close-text="Close" />
+            <input id="departure" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="selectedFlight.departure" close-text="Close"  ng-required="true" />
           </div>
           <div class="form-group">
             <label for="return">Return</label>
-            <input id="return" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-disabled="!returnFlight" ng-model="fligtCredentials.return" ng-required="true" close-text="Close" />
+            <input id="return" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-disabled="!returnFlight" ng-model="selectedFlight.return" ng-required="true" close-text="Close" />
           </div>
           <div class="form-group flightClassContainer">
             <label for="class">Cabin Class & Travellers</label>
@@ -95,7 +95,7 @@
       </div>
     </div>
     <div class="form_button_part" >
-      <button type="button" class="btn btn-info btn-circle btn-lg">
+      <button type="submit" form="flight_form" class="btn btn-info btn-circle btn-lg" ng-click="searchFlight(selectedFlight)">
         <i class="glyphicon glyphicon-ok"></i>
       </button>
     </div>
