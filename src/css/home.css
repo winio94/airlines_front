@@ -1,3 +1,9 @@
+* {
+  margin:0;
+  padding:0;
+  border:0;
+}
+
 html {
   height: 100%;
 }
@@ -13,22 +19,30 @@ body {
 }
 
 .navbar {
+  border: 0;
+  background-color: #372f45;
   border-radius: 0px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #AEDEE7;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #AEDEE7;
 }
 
 .wrapper {
   min-height: 100%;
   margin: 0 auto;
-}
-
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
 }
 
 .navbar-header {
@@ -51,4 +65,137 @@ body {
   left: 45%;
   position:absolute;
   top:100px;
+}
+
+.flightSearchContainer {
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 35%;
+  margin-top: 100px;
+  background: rgba(95,99,131, .6);
+}
+
+.flightSearchContainer label, a {
+  color: #AEDEE7;
+}
+
+#flight_form {
+  display: inline-block;
+  padding: 10px;
+}
+
+#flight_form .form-inline {
+  padding: 0px !important;
+  width: 100% !important;
+}
+
+.form-inline .form-control {
+  width: 100% !important;
+}
+
+.flightType ul {
+  padding: 0px !important;
+  margin: 0 auto !important;
+}
+
+.flightType li {
+  margin : 0 auto !important;
+  display: inline;
+  padding-right: 20px;
+}
+
+.form-group i {
+  font-size:20px;
+}
+
+.flightRoute .form-group {
+  padding: 0px;
+  width: 46.5%;
+}
+
+.flightRoute  .form-group.flightSwapContainer {
+  text-align: center;
+  width: 5%;
+}
+
+.flightTime {
+  padding-top: 10px;
+}
+
+.flightTime .form-group {
+  padding: 0px;
+  width: 23%;
+}
+
+.flightTime .form-group.flightClassContainer {
+  position: relative;
+  padding: 0px;
+  width: 46.5%;
+  margin-left: 5.5%;
+}
+.form_search_part {
+  float: left;
+  width: 85%;
+}
+
+.form_button_part {
+  float: left;
+  width: 15%;
+  text-align: center;
+}
+
+.form_button_part .btn-circle {
+  margin-top: 70%;
+  outline: none;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 33px;
+}
+
+.flightClassWrapper {
+  position: relative;
+}
+
+.flightClassOption {
+  position: absolute;
+  width: 100%;
+}
+
+.flightClassOptions {
+  z-index: 100;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  display: block;
+  padding: 10px;
+}
+
+.flightClassOptions #class {
+  margin: 0 auto;
+  padding: 5px 0px 15px 0px;
+}
+
+.arrow-up {
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.flightClassOptions .form-inline .form-control {
+  margin: 0 auto !important;
+  padding: 30px;
+}
+
+.flightClassOptions .ui-select-bootstrap {
+  width: 80%;
+}
+
+.travellers {
+  text-align: center;
+  padding-bottom: 5px;
 }
