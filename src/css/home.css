@@ -106,7 +106,6 @@ body {
 
 .form-group i {
   font-size:20px;
-  /*color: #AEDEE7;*/
 }
 
 .flightRoute .form-group {
@@ -176,6 +175,7 @@ body {
   margin: 0 auto;
   padding: 5px 0px 15px 0px;
 }
+
 .arrow-up {
   margin: 0 auto;
   margin-top: 5px;

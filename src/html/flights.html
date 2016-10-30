@@ -105,3 +105,34 @@
     There was a problem searching flight. Please try again.
   </div>
 </div>
+
+<div ng-show="flights.length > 0" style="background: white; margin:0 auto; width: 60%; margin-top: 20px;">
+  <table st-table="flightCollection" st-safe-src="flights" class="table table-striped">
+    <thead>
+      <tr>
+        <th st-sort="flightNumber">Flight Number</th>
+        <th st-sort="departureDate">Departure date</th>
+        <th st-sort="arrivalDate">Arrival date</th>
+        <th st-sort="from">From</th>
+        <th st-sort="to">To</th>
+      </tr>
+      <tr>
+        <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="flight in flightCollection">
+        <td>{{flight.flightNumber}}</td>
+        <td>{{flight.departureDate}}</td>
+        <td>{{flight.arrivalDate}}</td>
+        <td>{{selectedFlight.from.city}}</td>
+        <td>{{selectedFlight.to.city}}</td>
+        <td>
+          <button type="button" ng-click="select(flight)" class="btn btn-lg btn-success">
+            <i class="glyphicon glyphicon glyphicon-ok"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

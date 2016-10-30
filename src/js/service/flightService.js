@@ -7,7 +7,14 @@ app.service('FlightService', ['$http', 'PathService', function($http, PathServic
     .then(function(response) {
       return response.data._embedded.flights;
     });
-  }
+  };
+
+  o.findFlightsByLocations = function(from, to) {
+    return $http.get(PathService.getPath() + 'flights/search/findFlightsByFromCityAndToCity?from=' + from + '&to=' + to)
+    .then(function(response) {
+      return response.data._embedded.flights;
+    });
+  };
 
   return o;
 }]);

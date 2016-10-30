@@ -3,6 +3,7 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
   //-------------------------------VARIABLES-------------------------------//
   $scope.flightClasses = ["Economy", "Premium Economy", "Business class", "First class"];
   $scope.isClassEnabled = false;
+  $scope.flights = [];
   $scope.selectedFlight = {
     from : null,
     to: null,
@@ -13,16 +14,11 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
   };
 
   //-------------------------------FUNCTIONS-------------------------------//
-  $scope.getFlights = function() {
-    FlightService.getFlights().then(function(response) {
-      $scope.flights = response;
-    });
-  };
 
   $scope.getAirportsByCityName = function(cityName)  {
     AirportService.findAirportsByCityName(cityName).then(function(response) {
       $scope.airports = response;
-    })
+    });
   };
 
   $scope.swapFlightLocations = function() {
@@ -38,11 +34,13 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
   $scope.disableReturnDate = function() {
     $scope.returnFlight=false;
     $scope.selectedFlight.return=null
-  }
+  };
 
   $scope.searchFlight = function(flightCredentials) {
-    console.log("FLIGHT CREDENTIALS : ", flightCredentials);
+    if(flightCredentials) {
+      FlightService.findFlightsByLocations(flightCredentials.from.city, flightCredentials.to.city).then(function(response) {
+        $scope.flights = response;
+      });
+    }
   };
-  
-  $scope.getFlights();
 }]);
