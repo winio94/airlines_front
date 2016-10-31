@@ -50,7 +50,11 @@ app.config(function($routeProvider, $httpProvider) {
 	.when('/login', {
 		templateUrl : 'src/html/login.html',
 		controller : 'HeaderCtrl'
-	}).otherwise('/');
+	}).otherwise('/')
+	.when('/flight_choose', {
+		templateUrl : 'src/html/flight_choose.html',
+		controller : 'FlightChooseCtrl'
+	});
 
 	$httpProvider.interceptors.push('airlinesRequestInterceptor');
 });
