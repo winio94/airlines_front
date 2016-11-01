@@ -1,4 +1,4 @@
-var app = angular.module("mainModule", ['ngRoute','ui.select', 'ngSanitize', 'ui.bootstrap', 'smart-table']);
+var app = angular.module("mainModule", ['ngRoute','ui.select', 'ngSanitize', 'ui.bootstrap', 'smart-table', 'ngStorage']);
 
 app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', function($q, $location,$injector){
 	return {
@@ -31,30 +31,31 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', funct
 }]);
 
 app.config(function($routeProvider, $httpProvider) {
-	$routeProvider.when('/', {
-		templateUrl : 'src/html/home.html',
-		controller  : 'HeaderCtrl'
+	$routeProvider.when("/", {
+		templateUrl : "src/html/home.html",
+		controller  : "HomeCtrl"
 	})
-	.when('/home', {
-		templateUrl : 'src/html/home.html',
-		controller  : 'HeaderCtrl'
+	.when("/flights", {
+		templateUrl : "src/html/flights.html",
+		controller  : "FlightCtrl"
 	})
-	.when('/flights', {
-		templateUrl : 'src/html/flights.html',
-		controller  : 'FlightCtrl'
+	.when("/customers", {
+		templateUrl : "src/html/customers.html",
+		controller  : "CustomerCtrl"
 	})
-	.when('/customers', {
-		templateUrl : 'src/html/customers.html',
-		controller  : 'CustomerCtrl'
+	.when("/login", {
+		templateUrl : "src/html/login.html",
+		controller : "HeaderCtrl"
 	})
-	.when('/login', {
-		templateUrl : 'src/html/login.html',
-		controller : 'HeaderCtrl'
-	}).otherwise('/')
-	.when('/flight_choose', {
-		templateUrl : 'src/html/flight_choose.html',
-		controller : 'FlightChooseCtrl'
-	});
+	.when("/flight_choose", {
+		templateUrl : "src/html/flight_choose.html",
+		controller : "FlightChooseCtrl"
+	}).otherwise({ redirectTo: '/' });
 
 	$httpProvider.interceptors.push('airlinesRequestInterceptor');
 });
+
+// for nested ng-view working properly
+app.run(['$route', function($route)  {
+
+}]);
