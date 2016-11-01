@@ -1,32 +1,28 @@
-app.factory('Flight', function(){
-  var o = {
-    flights: [],
-    from : null,
-    to : null
-  };
+app.factory('Flight', function($localStorage){
+  var o = {};
 
   o.setFlights = function(_flights) {
-    o.flights = _flights;
+    $localStorage.flights = _flights;
   };
 
   o.getFlights = function() {
-    return o.flights;
+    return $localStorage.flights;
   };
 
   o.setFlightFrom = function(_from) {
-    o.from = _from;
+    $localStorage.from = _from;
   };
 
   o.getFlightFrom = function() {
-    return o.from;
+    return $localStorage.from;
   };
 
   o.setFlightTo = function(_to) {
-    o.to = _to;
+    $localStorage.to = _to;
   };
 
   o.getFlightTo = function() {
-    return o.to;
+    return $localStorage.to;
   };
 
 
