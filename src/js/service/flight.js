@@ -1,5 +1,6 @@
 app.factory('Flight', function($localStorage){
-  var o = {};
+  var o = {
+  };
 
   o.setFlights = function(_flights) {
     $localStorage.flights = _flights;
@@ -25,6 +26,28 @@ app.factory('Flight', function($localStorage){
     return $localStorage.to;
   };
 
+  o.getSelectedFlight = function() {
+    if($localStorage.selectedFlight == null) {
+      return emptyFlight();
+    } else {
+      return $localStorage.selectedFlight;
+    }
+  };
+
+  o.setSelectedFlight = function(_selectedFlight) {
+    $localStorage.selectedFlight = _selectedFlight;
+  };
+
+  function emptyFlight() {
+    return {
+      from : null,
+      to: null,
+      departure: null,
+      return: null,
+      flightClass: null,
+      passengers: 1
+    };
+  };
 
   return o;
 });

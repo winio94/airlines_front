@@ -3,14 +3,7 @@ app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportSe
   //-------------------------------VARIABLES-------------------------------//
   $scope.flightClasses = ["Economy", "Premium Economy", "Business class", "First class"];
   $scope.isClassEnabled = false;
-  $scope.selectedFlight = {
-    from : null,
-    to: null,
-    departure: null,
-    return: null,
-    flightClass: null,
-    passengers: 1
-  };
+  $scope.selectedFlight = Flight.getSelectedFlight();
 
   //-------------------------------FUNCTIONS-------------------------------//
 
@@ -39,6 +32,7 @@ app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportSe
     if(flightCredentials) {
       FlightService.findFlightsByLocations(flightCredentials.from.city, flightCredentials.to.city)
       .then(function(response) {
+        Flight.setSelectedFlight($scope.selectedFlight);
         Flight.setFlights(response);
         Flight.setFlightFrom($scope.selectedFlight.from);
         Flight.setFlightTo($scope.selectedFlight.to);
