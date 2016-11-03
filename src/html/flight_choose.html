@@ -1,0 +1,31 @@
+<div class="flightChoose" ng-controller="FlightChooseCtrl" ng-show="flights.length > 0" style="background: white; margin:0 auto; width: 60%; margin-top: 20px;">
+  <table st-table="flightCollection" st-safe-src="flights" class="table table-striped">
+    <thead>
+      <tr class="searchedFlightsHead">
+        <th st-sort="flightNumber">Flight Number</th>
+        <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
+        <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> Arrival date</th>
+        <th st-sort="from">From</th>
+        <th st-sort="to">To</th>
+        <th st-sort="price"><i class="fa fa-usd" style="font-size:40px;"></i> Price</th>
+      </tr>
+      <tr>
+        <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="searchedFlightsBody" ng-repeat="flight in flightCollection">
+        <td>{{flight.flightNumber}}</td>
+        <td>{{flight.departureDate}}</td>
+        <td>{{flight.arrivalDate}}</td>
+        <td>{{flightFrom.city}}</td>
+        <td>{{flightTo.city}}</td>
+        <td class="price">
+          <button type="button" ng-click="select(flight)" class="btn btn-lg btn-success" style="padding:10px;">
+            {{flight.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

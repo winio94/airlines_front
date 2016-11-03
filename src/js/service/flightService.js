@@ -10,7 +10,7 @@ app.service('FlightService', ['$http', 'PathService', function($http, PathServic
   };
 
   o.findFlightsByLocations = function(from, to) {
-    return $http.get(PathService.getPath() + 'flights/search/findFlightsByFromCityAndToCity?from=' + from + '&to=' + to)
+    return $http.get(PathService.getPath() + 'flights/search/findFlightsByFromCityAndToCityOrderByPrice?from=' + from + '&to=' + to)
     .then(function(response) {
       return response.data._embedded.flights;
     });

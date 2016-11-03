@@ -16,31 +16,30 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
 
 
 	<script src="src/js/app.js"></script>
 	<script src="src/js/controller/CustomerCtrl.js"></script>
 	<script src="src/js/controller/FlightCtrl.js"></script>
+	<script src="src/js/controller/FlightChooseCtrl.js"></script>
 	<script src="src/js/controller/HeaderCtrl.js"></script>
+	<script src="src/js/controller/HomeCtrl.js"></script>
 	<script src="src/js/service/authService.js"></script>
 	<script src="src/js/service/pathService.js"></script>
 	<script src="src/js/service/airportService.js"></script>
 	<script src="src/js/service/flightService.js"></script>
-	<script src="src/js/jquery/layoutUtil.js"></script>
+	<script src="src/js/service/flight.js"></script>
 	<script src="src/js/directives/footer.js"></script>
 	<script src="src/js/directives/header.js"></script>
 	<script src="src/js/directives/content.js"></script>
-	<style type="text/css">
-	[ng\:cloak], [ng-cloak], .ng-cloak {
-		display: none !important;
-	}
-	</style>
+
 </head>
-<body ng-controller="HeaderCtrl" ng-cloak class="ng-cloak">
+<body>
 	<div class="wrapper">
-		<ng-header></ng-header>
-		<ng-content></ng-content>
-		<ng-footer></ng-footer>
+		<div ng-header></div>
+		<div ng-content></div>
+		<div ng-footer></div>
 	</div>
 </body>
 </html>

@@ -1,17 +1,9 @@
-app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', function($scope,FlightService, AirportService){
+app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportService', 'Flight', function($scope, $location, FlightService, AirportService, Flight){
 
   //-------------------------------VARIABLES-------------------------------//
   $scope.flightClasses = ["Economy", "Premium Economy", "Business class", "First class"];
   $scope.isClassEnabled = false;
-  $scope.flights = [];
-  $scope.selectedFlight = {
-    from : null,
-    to: null,
-    departure: null,
-    return: null,
-    flightClass: null,
-    passengers: 1
-  };
+  $scope.selectedFlight = Flight.getSelectedFlight();
 
   //-------------------------------FUNCTIONS-------------------------------//
 
@@ -38,8 +30,13 @@ app.controller("FlightCtrl", ['$scope', 'FlightService', 'AirportService', funct
 
   $scope.searchFlight = function(flightCredentials) {
     if(flightCredentials) {
-      FlightService.findFlightsByLocations(flightCredentials.from.city, flightCredentials.to.city).then(function(response) {
-        $scope.flights = response;
+      FlightService.findFlightsByLocations(flightCredentials.from.city, flightCredentials.to.city)
+      .then(function(response) {
+        Flight.setSelectedFlight($scope.selectedFlight);
+        Flight.setFlights(response);
+        Flight.setFlightFrom($scope.selectedFlight.from);
+        Flight.setFlightTo($scope.selectedFlight.to);
+        $location.path('/flight_choose');
       });
     }
   };
