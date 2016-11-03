@@ -192,3 +192,34 @@ body {
   text-align: center;
   padding-bottom: 5px;
 }
+
+.searchedFlightsBody td {
+  vertical-align: middle !important;
+  font-size: 15px;
+  color: #372f45;
+  white-space: nowrap;
+}
+
+.searchedFlightsBody td.price {
+  vertical-align: middle !important;
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+}
+
+.searchedFlightsBody td.price button {
+  width: 70%;
+}
+
+.searchedFlightsHead th {
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.searchedFlightsHead > :hover{
+    background: rgba(95,99,131, .2);
+}
+
+.flightChoose {
+  border-radius: 5px;
+}

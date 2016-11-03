@@ -45,6 +45,7 @@ app.factory('Flight', function($localStorage){
       departure: null,
       return: null,
       flightClass: null,
+      price: null,
       passengers: 1
     };
   };
