@@ -50,6 +50,10 @@ app.config(function($routeProvider, $httpProvider) {
 	.when("/flight_choose", {
 		templateUrl : "src/html/flight_choose.html",
 		controller : "FlightChooseCtrl"
+	})
+	.when("/flight_details", {
+		templateUrl : "src/html/flight_details.html",
+		controller : "FlightDetailsCtrl"
 	}).otherwise({ redirectTo: '/' });
 
 	$httpProvider.interceptors.push('airlinesRequestInterceptor');

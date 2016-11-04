@@ -1,0 +1,31 @@
+
+<div class="flightDetails">
+  <div class="flightDetailsContainer">
+    <div class="flightDetailsForm">
+      <div class="flightDesription">
+        <ng-heading icon="fa fa-plane" from="{{from.city}}" to="{{to.city}}" arrow="&rarr;"></ng-heading>
+        <div class="flightDescriptionContent">
+          <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 pull-left space-right left-side">
+            <div class="bolderDark">{{departureHour}}:{{departureMinutes}}</div>
+            <div class="mediumBolderDark">{{departureDayMonthYear}}</div>
+            <div class="smallBolderDark">{{from.city}}</div>
+          </div>
+          <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 center-side">
+            <br>
+            <div class="bolderDark"><span class="glyphicon glyphicon-time"></span> {{duration}}</div>
+            <div class="smallBolderDark">Flight nr {{flight.flightNumber}}</div>
+          </div>
+          <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 pull-right space-left right-side">
+            <div class="bolderDark">{{arrivalHour}}:{{arrivalMinutes}}</div>
+            <div class="mediumBolderDark">{{arrivalDayMonthYear}}</div>
+            <div class="smallBolderDark">{{to.city}}</div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+    <div class="flightDetailsSummary">
+      SUMMARY
+    </div>
+  </div>
+</div>
