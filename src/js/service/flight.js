@@ -38,6 +38,14 @@ app.factory('Flight', function($localStorage){
     $localStorage.selectedFlight = _selectedFlight;
   };
 
+  o.getChoosenFlight = function() {
+    return $localStorage.choosenFlight;
+  };
+
+  o.setChoosenFlight = function(_choosenFlight) {
+    $localStorage.choosenFlight = _choosenFlight;
+  };
+
   function emptyFlight() {
     return {
       from : null,
