@@ -1,90 +1,92 @@
 <div class="flightSearchContainer">
-  <form id="flight_form" role="form" ng-submit="searchFlight()">
-    <div class="form_search_part">
-      <div class="flightType">
-        <ul>
-          <li>
-            <input type="radio" id="return-option" name="selector" ng-click="returnFlight=true">
-            <label for="return-option">Return</label>
-          </li>
-          <li>
-            <input type="radio" id="one-way-option" name="selector" ng-click="disableReturnDate()" checked>
-            <label for="one-way-option">One way</label>
-          </li>
-        </ul>
-      </div>
-      <div class="flightRoute">
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="from">From</label>
-            <ui-select ng-model="selectedFlight.from">
-              <ui-select-match>
-                <span ng-bind="$select.selected.city"></span>
-              </ui-select-match>
-              <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
-                <span ng-bind="airport.city"></span>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="form-group flightSwapContainer">
-            <label for="flightSwap"></label>
-            <div class="flightSwap">
-              <a href="" ng-click="swapFlightLocations()">
-                <i class="fa fa-exchange"></i>
-              </a>
+  <div class="box-shadow">
+    <form id="flight_form" role="form" ng-submit="searchFlight()">
+      <div class="form_search_part">
+        <div class="flightType">
+          <ul>
+            <li>
+              <input type="radio" id="return-option" name="selector" ng-click="returnFlight=true">
+              <label for="return-option">Return</label>
+            </li>
+            <li>
+              <input type="radio" id="one-way-option" name="selector" ng-click="disableReturnDate()" checked>
+              <label for="one-way-option">One way</label>
+            </li>
+          </ul>
+        </div>
+        <div class="flightRoute">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="from">From</label>
+              <ui-select ng-model="selectedFlight.from">
+                <ui-select-match>
+                  <span ng-bind="$select.selected.city"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
+                  <span ng-bind="airport.city"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+            <div class="form-group flightSwapContainer">
+              <label for="flightSwap"></label>
+              <div class="flightSwap">
+                <a href="" ng-click="swapFlightLocations()">
+                  <i class="fa fa-exchange"></i>
+                </a>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="to">To</label>
+              <ui-select ng-model="selectedFlight.to">
+                <ui-select-match>
+                  <span ng-bind="$select.selected.city"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
+                  <span ng-bind="airport.city"></span>
+                </ui-select-choices>
+              </ui-select>
             </div>
           </div>
-          <div class="form-group">
-            <label for="to">To</label>
-            <ui-select ng-model="selectedFlight.to">
-              <ui-select-match>
-                <span ng-bind="$select.selected.city"></span>
-              </ui-select-match>
-              <ui-select-choices repeat="airport in airports | filter:$select.search" refresh="getAirportsByCityName($select.search)" refresh-delay="250">
-                <span ng-bind="airport.city"></span>
-              </ui-select-choices>
-            </ui-select>
-          </div>
         </div>
-      </div>
-      <div class="flightTime">
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="departure">Depart</label>
-            <input id="departure" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="selectedFlight.departure" close-text="Close"  ng-required="true" />
-          </div>
-          <div class="form-group">
-            <label for="return">Return</label>
-            <input id="return" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-disabled="!returnFlight" ng-model="selectedFlight.return" ng-required="true" close-text="Close" />
-          </div>
-          <div class="form-group flightClassContainer">
-            <label for="class">Cabin Class & Travellers</label>
-            <div class="flightClassOptionWrapper">
-              <a ng-click="showClassOption()" href="" class="form-control" id="class" name="class" style="overflow:hidden">
-                <span>{{selectedFLight.passengers}} travellers, {{selectedFlight.flightClass}}</span>
-                <span class="glyphicon glyphicon-menu-down pull-right"></span>
-              </a>
-              <div class="flightClassOption" ng-show="isClassEnabled">
-                <div class="arrow-up"></div>
-                <div class="flightClassOptions">
-                  <label for="class">Cabin Class</label>
-                  <ui-select id="class" ng-model="selectedFlight.flightClass" >
-                    <ui-select-match>
-                      <span ng-bind="$select.selected"></span>
-                    </ui-select-match>
-                    <ui-select-choices repeat="class in flightClasses | filter:$select.search">
-                      <span ng-bind="class"></span>
-                    </ui-select-choices>
-                  </ui-select>
-                  <div class="travellers">
-                    <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-default" ng-click="selectedFLight.passengers = selectedFLight.passengers + 1" ng-disabled="selectedFLight.passengers > 7">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                      </button>
-                      <button type="button" class="btn btn-default">{{selectedFLight.passengers}}</button>
-                      <button type="button" class="btn btn-default" ng-click="selectedFLight.passengers = selectedFLight.passengers - 1" ng-disabled="selectedFLight.passengers < 2">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                      </button>
+        <div class="flightTime">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="departure">Depart</label>
+              <input id="departure" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="selectedFlight.departure" close-text="Close"  ng-required="true" />
+            </div>
+            <div class="form-group">
+              <label for="return">Return</label>
+              <input id="return" type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-disabled="!returnFlight" ng-model="selectedFlight.return" ng-required="true" close-text="Close" />
+            </div>
+            <div class="form-group flightClassContainer">
+              <label for="class">Cabin Class & Travellers</label>
+              <div class="flightClassOptionWrapper">
+                <a ng-click="showClassOption()" href="" class="form-control" id="class" name="class" style="overflow:hidden">
+                  <span>{{selectedFlight.passengers}} travellers, {{selectedFlight.flightClass}}</span>
+                  <span class="glyphicon glyphicon-menu-down pull-right"></span>
+                </a>
+                <div class="flightClassOption" ng-show="isClassEnabled">
+                  <div class="arrow-up"></div>
+                  <div class="flightClassOptions">
+                    <label for="class">Cabin Class</label>
+                    <ui-select id="class" ng-model="selectedFlight.flightClass" >
+                      <ui-select-match>
+                        <span ng-bind="$select.selected"></span>
+                      </ui-select-match>
+                      <ui-select-choices repeat="class in flightClasses | filter:$select.search">
+                        <span ng-bind="class"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                    <div class="travellers">
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" ng-click="addOne()" ng-disabled="selectedFlight.passengers > 7">
+                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">{{selectedFlight.passengers}}</button>
+                        <button type="button" class="btn btn-default" ng-click="subtractOne()" ng-disabled="selectedFlight.passengers < 2">
+                          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -93,15 +95,15 @@
           </div>
         </div>
       </div>
+      <div class="form_button_part" >
+        <button type="submit" form="flight_form" class="btn btn-info btn-circle btn-lg" ng-click="searchFlight(selectedFlight); isClassEnabled=false">
+          <i class="glyphicon glyphicon-ok"></i>
+        </button>
+      </div>
+      <div style="clear:both;"></div>
+    </form>
+    <div class="alert alert-danger" ng-show="error">
+      There was a problem searching flight. Please try again.
     </div>
-    <div class="form_button_part" >
-      <button type="submit" form="flight_form" class="btn btn-info btn-circle btn-lg" ng-click="searchFlight(selectedFlight); isClassEnabled=false">
-        <i class="glyphicon glyphicon-ok"></i>
-      </button>
-    </div>
-    <div style="clear:both;"></div>
-  </form>
-  <div class="alert alert-danger" ng-show="error">
-    There was a problem searching flight. Please try again.
   </div>
 </div>

@@ -40,4 +40,12 @@ app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportSe
       });
     }
   };
+
+  $scope.addOne = function() {
+    $scope.selectedFlight.passengers++;
+  };
+
+  $scope.subtractOne = function() {
+    $scope.selectedFlight.passengers--;
+  };
 }]);

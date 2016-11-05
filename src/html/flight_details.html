@@ -1,8 +1,8 @@
 
 <div class="flightDetails">
   <div class="flightDetailsContainer">
-    <div class="flightDetailsForm">
-      <div class="flightDesription">
+    <form class="flightDetailsForm">
+      <div class="flightDesription box-shadow">
         <ng-heading icon="fa fa-plane" from="{{from.city}}" to="{{to.city}}" arrow="&rarr;"></ng-heading>
         <div class="flightDescriptionContent">
           <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 pull-left space-right left-side">
@@ -23,9 +23,44 @@
         </div>
         <div style="clear:both;"></div>
       </div>
+      <div class="flightPassengers box-shadow">
+        <ng-heading icon="fa fa-male" description="Passengers"></ng-heading>
+        <div class="flightPassengersContent" ng-repeat="passenger in getPassengers() track by $index">
+          <ng-double-input-box
+          heading-number="{{$index + 1}}" heading=". Passenger"
+          left-input-heading="First name" right-input-heading="Last name"
+          model=passenger>
+        </ng-double-input-box>
+      </div>
     </div>
-    <div class="flightDetailsSummary">
-      SUMMARY
+    <div class="flightContact  box-shadow">
+      <ng-heading icon="fa fa-info" description="Contact Information"></ng-heading>
+      <div class="flightContactContent">
+        <ng-double-input-box left-input-heading="Email address" right-input-heading="Phone number"></ng-double-input-box>
+      </div>
+    </div>
+    <div class="flightLuggage box-shadow">
+      <ng-heading icon="fa fa-suitcase" description="Luggage"></ng-heading>
+      <div class="flightLuggageContent">
+        <ng-double-check-box  left-input-heading="Free luggage" right-input-heading="Registered luggage"
+        right-description="First passenger may take one registered lugagge with dimentions 149x119x171 cm (23kg)."
+        left-description="Each passenger may take one carry-on lugagge with dimentions 42x32x25 cm (15kg)."
+        left-label="Free" right-label="50.00 zl">
+      </ng-double-check-box>
     </div>
   </div>
+  <div class="flightPayment box-shadow">
+    <ng-heading icon="fa fa-credit-card" description="Payment"></ng-heading>
+    <div class="flightPaymentContent" ng-repeat="payment in payments">
+      <ng-single-check-box  input-heading="{{payment.name}}" input-comment="(+{{payment.price}} zl)"
+      description="{{payment.description}}">
+    </ng-single-check-box>
+  </div>
+</div>
+</form>
+
+</div>
+<div class="flightDetailsSummary">
+  SUMMARY
+</div>
 </div>

@@ -17,6 +17,32 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
   $scope.arrivalMinutes = DateUtil.getMinutes(arrivalDate);
   $scope.arrivalDayMonthYear = DateUtil.getDayMonthYear(arrivalDate);
   $scope.duration = DateUtil.getHoursAndMinutesFromMinutes($scope.flight.duration);
+
   console.log("DATE : ", new Date($scope.flight.departureDate));
   console.log("FLIGHT : ", $scope.flight);
+  console.log("passengersAmmount : ", $scope.passengersAmmount);
+
+  $scope.getPassengers = function() {
+    $scope.passengers = new Array($scope.passengersAmmount)
+    return $scope.passengers;
+  };
+
+  $scope.payments = [
+    {
+      "name" : "Bank transfer",
+      "price" : 0,
+      "description": "Tranfer money into bank account."
+    },
+    {
+      "name" : "Pay Pal",
+      "price" : 9.63,
+      "description": "For PayPal account owners."
+    },
+    {
+      "name" : "Cash",
+      "price" : 0,
+      "description": "Deposit money."
+    }
+  ];
+
 }]);
