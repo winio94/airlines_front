@@ -3,9 +3,9 @@
   <form class="form-horizontal" role="form">
     <label class="big">
       <div class="form-group leftInputContainer" style="float:left">
-        <label>{{leftInputHeading}}<input class="form-control" type="radio" name="radio"></label>
+        <label>{{leftInputHeading}}<input class="form-control" type="radio" name="radio" value={{leftLabel}} ng-model="model"></label>
         <div class="checkbox-label">
-          {{leftLabel}}
+          {{leftLabel}}{{labelComment}}
         </div>
         <div>
           {{leftDescription}}
@@ -14,9 +14,9 @@
     </label>
     <label class="big">
       <div class="form-group rightInputContainer" style="float:left">
-        <label>{{rightInputHeading}}<input class="form-control" type="radio" name="radio"></label>
+        <label>{{rightInputHeading}}<input class="form-control" type="radio" name="radio" value={{rightLabel}}  ng-model="model"></label>
         <div class="checkbox-label">
-          {{rightLabel}}
+          {{rightLabel}}{{labelComment}}
         </div>
         <div>
           {{rightDescription}}

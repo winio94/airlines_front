@@ -8,8 +8,10 @@ app.directive('ngDoubleCheckBox', function() {
       'headingNumber': '@?',
       'leftDescription' : '@?',
       'rightDescription' : '@?',
-      'leftLabel' : '@?',
-      'rightLabel' : '@?'
+      'leftLabel' : '=',
+      'rightLabel' : '=',
+      'labelComment' : '@?',
+      'model' : '='
     },
     templateUrl: '/src/html/doubleCheckBox.html'
   }

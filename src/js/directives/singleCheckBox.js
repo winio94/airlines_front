@@ -3,8 +3,10 @@ app.directive('ngSingleCheckBox', function() {
     restrict: 'E',
     scope: {
       'inputHeading': '@?',
-      'inputComment': '@?',
-      'description': '@?'
+      'description' : '@?',
+      'label' : '=',
+      'inputComment' : '@?',
+      'model' : '='
     },
     templateUrl: '/src/html/singleCheckBox.html'
   }

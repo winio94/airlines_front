@@ -6,7 +6,10 @@ app.directive('ngDoubleInputBox', function() {
       'heading': '@?',
       'leftInputHeading': '@?',
       'rightInputHeading': '@?',
-      'headingNumber': '@?'
+      'headingNumber': '@?',
+      'modelLeft':'=',
+      'modelRight':'=',
+      'inputType' : '@?'
     },
     templateUrl: '/src/html/doubleInput.html'
   }

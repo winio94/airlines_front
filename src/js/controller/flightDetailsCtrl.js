@@ -17,13 +17,23 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
   $scope.arrivalMinutes = DateUtil.getMinutes(arrivalDate);
   $scope.arrivalDayMonthYear = DateUtil.getDayMonthYear(arrivalDate);
   $scope.duration = DateUtil.getHoursAndMinutesFromMinutes($scope.flight.duration);
-
+  $scope.flightContact = null;
+  $scope.flightPayment = 0;
+  $scope.flightLuggage = 0;
   console.log("DATE : ", new Date($scope.flight.departureDate));
   console.log("FLIGHT : ", $scope.flight);
   console.log("passengersAmmount : ", $scope.passengersAmmount);
 
+  (function initializeEmptyPassengers() {
+    $scope.passengers = [];
+    for(i=0; i< $scope.passengersAmmount; i++) {
+      $scope.passengers.push(
+        {}
+      );
+    };
+  })();
+
   $scope.getPassengers = function() {
-    $scope.passengers = new Array($scope.passengersAmmount)
     return $scope.passengers;
   };
 

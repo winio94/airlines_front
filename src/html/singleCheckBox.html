@@ -1,18 +1,18 @@
 <div class="checkBoxContainer">
   <div class="inputContainer">
-    <label class="big">
-      <div class="leftInputContainer">
-        <div style="float:left; width:30%;">
-          {{inputHeading}}
+    <form class="form-horizontal" role="form">
+      <label class="big">
+        <div class="form-group leftInputContainer" style="float:left">
+          <label>{{inputHeading}}<input class="form-control" type="radio" name="radio2" value={{label}} ng-model="model"></label>
           <div class="checkbox-label">
-            {{inputComment}}
+            {{label}}{{inputComment}}
+          </div>
+          <div>
+            {{description}}
           </div>
         </div>
-        <div style="float:left; width:70%;">
-          {{description}}
-        </div>
-        <div style="clear:both;"></div>
-      </div>
-    </label>
+      </label>
+      <div style="clear:both;"></div>
+    </form>
   </div>
 </div>
