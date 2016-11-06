@@ -1,42 +1,28 @@
 app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUtil', function($scope, Flight, PathService, DateUtil) {
-  $scope.flight = Flight.getChoosenFlight();
-  $scope.passengersAmmount = Flight.getSelectedFlight().passengers;
-  PathService.retrieveDataFrom($scope.flight._links.from.href).then(function(result) {
-    $scope.from = result;
-  });
-  PathService.retrieveDataFrom($scope.flight._links.to.href).then(function(result) {
-    $scope.to = result;
-  });
 
-  var departureDate = new Date($scope.flight.departureDate);
-  var arrivalDate = new Date($scope.flight.arrivalDate);
-  $scope.departureHour = DateUtil.getHour(departureDate);
-  $scope.departureMinutes = DateUtil.getMinutes(departureDate);
-  $scope.departureDayMonthYear = DateUtil.getDayMonthYear(departureDate);
-  $scope.arrivalHour = DateUtil.getHour(arrivalDate);
-  $scope.arrivalMinutes = DateUtil.getMinutes(arrivalDate);
-  $scope.arrivalDayMonthYear = DateUtil.getDayMonthYear(arrivalDate);
+  //-------------------------------VARIABLES-------------------------------//
+  $scope.flight = Flight.getChoosenFlight();
+  $scope.departureDate = new Date($scope.flight.departureDate);
+  $scope.arrivalDate = new Date($scope.flight.arrivalDate);
+  $scope.departureHour = DateUtil.getHour($scope.departureDate);
+  $scope.departureMinutes = DateUtil.getMinutes($scope.departureDate);
+  $scope.departureDayMonthYear = DateUtil.getDayMonthYear($scope.departureDate);
+  $scope.arrivalHour = DateUtil.getHour($scope.arrivalDate);
+  $scope.arrivalMinutes = DateUtil.getMinutes($scope.arrivalDate);
+  $scope.arrivalDayMonthYear = DateUtil.getDayMonthYear($scope.arrivalDate);
   $scope.duration = DateUtil.getHoursAndMinutesFromMinutes($scope.flight.duration);
+  $scope.passengersAmmount = Flight.getSelectedFlight().passengers;
   $scope.flightContact = null;
   $scope.flightPayment = 0;
   $scope.flightLuggage = 0;
-  console.log("DATE : ", new Date($scope.flight.departureDate));
-  console.log("FLIGHT : ", $scope.flight);
-  console.log("passengersAmmount : ", $scope.passengersAmmount);
-
-  (function initializeEmptyPassengers() {
-    $scope.passengers = [];
-    for(i=0; i< $scope.passengersAmmount; i++) {
-      $scope.passengers.push(
-        {}
-      );
-    };
-  })();
-
-  $scope.getPassengers = function() {
-    return $scope.passengers;
+  $scope.reservation = {
+    "price": $scope.passengersAmmount * $scope.flight.price,
+    "passengers" : $scope.passengers,
+    "contact" : {},
+    "luggage" : null,
+    "payment" : null,
+    "flight" : $scope.flight
   };
-
   $scope.payments = [
     {
       "name" : "Bank transfer",
@@ -45,7 +31,7 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
     },
     {
       "name" : "Pay Pal",
-      "price" : 9.63,
+      "price" : 9,
       "description": "For PayPal account owners."
     },
     {
@@ -54,5 +40,47 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
       "description": "Deposit money."
     }
   ];
+  PathService.retrieveDataFrom($scope.flight._links.from.href).then(function(result) {
+    $scope.from = result;
+  });
+  PathService.retrieveDataFrom($scope.flight._links.to.href).then(function(result) {
+    $scope.to = result;
+  });
 
+  //-------------------------------FUNCTIONS-------------------------------//
+  $scope.countReservationPrice = function() {
+    $scope.reservation = $scope.passengersAmmount * $scope.flight.price + $scope.flightPayment + $scope.flightLuggage;
+  };
+
+  $scope.getPassengers = function() {
+    return $scope.passengers;
+  };
+
+  $scope.makeReservation = function() {
+    $scope.reservation.passengers = $scope.passengers;
+    $scope.reservation.luggage = $scope.flightLuggage;
+    $scope.reservation.payment = $scope.flightPayment;
+  };
+
+  $scope.initializeEmptyPassengers = function() {
+    $scope.passengers = [];
+    for(i=0; i< $scope.passengersAmmount; i++) {
+      $scope.passengers.push(
+        {}
+      );
+    };
+  };
+
+  //-------------------------------WATCHERS-------------------------------//
+  $scope.$watch('flightPayment', function(newValue, oldValue) {
+    var result = newValue - oldValue;
+    $scope.reservation.price += result;
+  });
+
+  $scope.$watch('flightLuggage', function(newValue, oldValue) {
+    var result = newValue - oldValue;
+    $scope.reservation.price += result;
+  });
+
+  $scope.initializeEmptyPassengers();
 }]);
