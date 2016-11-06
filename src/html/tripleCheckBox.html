@@ -1,0 +1,39 @@
+<div class="inputContainer">
+  <div class="containerTitle">{{headingNumber}}{{heading}}</div>
+  <form class="form-horizontal" role="form">
+    <label class="big">
+      <div class="form-group tripleInputContainer" style="float:left">
+        <label>{{leftInputHeading}}<input class="form-control" type="radio" name="radio2" value={{leftLabel}} ng-model="model"></label>
+        <div class="checkbox-label">
+          {{leftLabel}}{{labelComment}}
+        </div>
+        <div>
+          {{leftDescription}}
+        </div>
+      </div>
+    </label>
+    <label class="big">
+      <div class="form-group tripleInputContainer" style="float:left">
+        <label>{{centerInputHeading}}<input class="form-control" type="radio" name="radio2" value={{centerLabel}}  ng-model="model"></label>
+        <div class="checkbox-label">
+          {{centerLabel}}{{labelComment}}
+        </div>
+        <div>
+          {{centerDescription}}
+        </div>
+      </div>
+    </label>
+    <label class="big">
+      <div class="form-group tripleInputContainer" style="float:left">
+        <label>{{rightInputHeading}}<input class="form-control" type="radio" name="radio2" value={{rightLabel}}  ng-model="model"></label>
+        <div class="checkbox-label">
+          {{rightLabel}}{{labelComment}}
+        </div>
+        <div>
+          {{rightDescription}}
+        </div>
+      </div>
+    </label>
+    <div style="clear:both;"></div>
+  </form>
+</div>
