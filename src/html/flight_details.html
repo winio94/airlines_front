@@ -70,9 +70,14 @@
     </ng-triple-check-box>
   </div>
 </div>
-<div>
-  {{flightPayment}}
+<div class="flight-details-submit">
+  <div class="box-shadow">
+    <button type="button" ng-click="makeReservation(flight_details)" class="btn btn-lg btn-default flight-details-button">
+      Make reservation. {{flight_details.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
+    </button>
+  </div>
 </div>
+
 </form>
 
 </div>
