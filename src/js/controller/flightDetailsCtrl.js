@@ -1,4 +1,4 @@
-app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUtil', function($scope, Flight, PathService, DateUtil) {
+app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUtil', 'ReservationService', function($scope, Flight, PathService, DateUtil, ReservationService) {
 
   //-------------------------------VARIABLES-------------------------------//
   $scope.flight = Flight.getChoosenFlight();
@@ -15,6 +15,10 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
   $scope.flightContact = null;
   $scope.flightPayment = 0;
   $scope.flightLuggage = 0;
+  $scope.emailPattern = new RegExp(/^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$/);
+  $scope.phonePattern = new RegExp(/^\+(?:[0-9] ?){8,11}[0-9]$/);
+  $scope.emailPatternMessage = " has wrong value";
+  $scope.phonePatternMessage = " must have directional at the beginning eg '+48'."
   $scope.reservation = {
     "price": $scope.passengersAmmount * $scope.flight.price,
     "passengers" : $scope.passengers,
@@ -60,6 +64,7 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
     $scope.reservation.passengers = $scope.passengers;
     $scope.reservation.luggage = $scope.flightLuggage;
     $scope.reservation.payment = $scope.flightPayment;
+    ReservationService.makeReservation($scope.reservation);
   };
 
   $scope.initializeEmptyPassengers = function() {

@@ -1,6 +1,6 @@
 <div class="flightDetails">
   <div class="flightDetailsContainer">
-    <form class="flightDetailsForm">
+    <form class="flightDetailsForm" name="flightDetailsForm">
       <div class="flightDesription box-shadow">
         <ng-heading icon="fa fa-plane" from="{{from.city}}" to="{{to.city}}" arrow="&rarr;"></ng-heading>
         <div class="flightDescriptionContent">
@@ -28,14 +28,20 @@
           <ng-double-input-box
           heading-number="{{$index + 1}}" heading=". Passenger"
           left-input-heading="First name" right-input-heading="Last name"
-          model-left=passenger.firstName model-right=passenger.lastName></ng-double-input-box>
+          model-left=passenger.firstName model-right=passenger.lastName
+          left-min-length="2", left-max-length="20"
+          right-min-length="2", right-max-length="20"
+          form="flightDetailsForm" index="{{$index}}"></ng-double-input-box>
         </div>
       </div>
       <div class="flightContact  box-shadow">
         <ng-heading icon="fa fa-info" description="Contact Information"></ng-heading>
         <div class="flightContactContent">
           <ng-double-input-box left-input-heading="Email address" right-input-heading="Phone number"
-          model-left=reservation.contact.email model-right=reservation.contact.phone></ng-double-input-box>
+          model-left=reservation.contact.email model-right=reservation.contact.phone
+          left-pattern=emailPattern right-pattern=phonePattern inputType="text"
+          left-pattern-message="emailPatternMessage" right-pattern-message="phonePatternMessage"
+          form="flightDetailsForm"></ng-double-input-box>
         </div>
       </div>
       <div class="flightLuggage box-shadow">
@@ -59,7 +65,7 @@
       </div>
       <div class="flight-details-submit box-shadow">
         <div>
-          <button type="button" ng-click="makeReservation(reservation)" class="btn btn-lg btn-default flight-details-button">
+          <button type="submit" ng-click="flightDetailsForm.$valid && makeReservation(reservation)" class="btn btn-lg btn-default flight-details-button">
             Make reservation. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
           </button>
         </div>

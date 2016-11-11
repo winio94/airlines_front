@@ -5,6 +5,7 @@ app.service('DateUtil', [function() {
     dayFullNames: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
     dayShortNames: ['Mon','Tue','Wed','Thu','Fri','Sat', 'Sun']
   };
+
   o.getHour = function(date) {
     return date.getHours() -1;
   };
@@ -14,12 +15,12 @@ app.service('DateUtil', [function() {
   }
 
   o.getDayMonthYear = function(date) {
-    var day = date.getUTCDate();
+    var day = date.getDay();
     var dayInWeek = date.getDay();
     var month = o.monthShortNames[date.getMonth()];
     var year = date.getUTCFullYear();
-
-    return day + " " + month + " " + year + " (" + o.dayShortNames[day] + ")";
+    var result = day + " " + month + " " + year + " (" + o.dayShortNames[day] + ")";
+    return result;
   }
 
   o.getHoursAndMinutesFromMinutes = function(minutes) {

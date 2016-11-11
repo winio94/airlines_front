@@ -1,4 +1,4 @@
-var app = angular.module("mainModule", ['ngRoute','ui.select', 'ngSanitize', 'ui.bootstrap', 'smart-table', 'ngStorage']);
+var app = angular.module("mainModule", ['ngAnimate', 'ngMessages', 'ngRoute','ui.select', 'ngSanitize', 'ui.bootstrap', 'smart-table', 'ngStorage']);
 
 app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', function($q, $location,$injector){
 	return {
@@ -8,22 +8,16 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', funct
 			config.headers['Authorization'] = headers;
 			return config;
 		},
+
 		requestError: function(config) {
 			return config;
 		},
 
-		response: function(res) {
-			if(res.data) {
+		responseError: function(res) {
+			if(res) {
 				if(res.data.errors) {
 					return $q.reject(res);
 				}
-			}
-			return res;
-		},
-
-		responseError: function(res) {
-			if(res.status === 404) {
-				$location.path('/home');
 			}
 			return res;
 		}
@@ -54,7 +48,12 @@ app.config(function($routeProvider, $httpProvider) {
 	.when("/flight_details", {
 		templateUrl : "src/html/flight_details.html",
 		controller : "FlightDetailsCtrl"
-	}).otherwise({ redirectTo: '/' });
+	})
+	.when("/reservation_summary", {
+		templateUrl : "src/html/reservation_summary.html",
+		controller : "ReservationCtrl"
+	})
+	.otherwise({ redirectTo: '/' });
 
 	$httpProvider.interceptors.push('airlinesRequestInterceptor');
 });

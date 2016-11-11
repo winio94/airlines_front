@@ -1,7 +1,6 @@
 app.directive('ngDoubleInputBox', function() {
   return {
-    restrict: 'E',
-    scope: true,
+    templateUrl: '/src/html/doubleInput.html',
     scope: {
       'heading': '@?',
       'leftInputHeading': '@?',
@@ -9,8 +8,17 @@ app.directive('ngDoubleInputBox', function() {
       'headingNumber': '@?',
       'modelLeft':'=',
       'modelRight':'=',
-      'inputType' : '@?'
-    },
-    templateUrl: '/src/html/doubleInput.html'
+      'inputType' : '@?',
+      'form': '=',
+      'index' : '@?',
+      'leftMinLength' : '@?',
+      'rightMinLength' : '@?',
+      'leftMaxLength': '@?',
+      'rightMaxLength': '@?',
+      'leftPattern': '=',
+      'rightPattern': '=',
+      'leftPatternMessage': '=',
+      'rightPatternMessage': '='
+    }
   }
 });
