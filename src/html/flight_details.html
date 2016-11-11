@@ -71,29 +71,31 @@
         </div>
       </div>
     </form>
-    <div class="flightDetailsSummary box-shadow">
-      <div class="flightDetailsBox">
-        <div class="summaryHeading">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Summary
+    <div class="flightDetailsSummaryContainer">
+      <div class="flightDetailsSummary box-shadow">
+        <div class="flightDetailsBox">
+          <div class="summaryHeading">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Summary
+          </div>
         </div>
-      </div>
-      <div class="flightDetailsBox">
-        <h4>Tickets</h4>
-        {{passengersAmmount}} x passengers :
-        {{passengersAmmount * flight.price}} zl
-      </div>
-      <div class="flightDetailsBox" ng-if="flightLuggage + flightPayment > 0">
-        <h4>Additional charge</h4>
-        <div ng-if="flightPayment > 0">
-          Payment charge : {{flightPayment}}
+        <div class="flightDetailsBox">
+          <h4>Tickets</h4>
+          {{passengersAmmount}} x passengers :
+          {{passengersAmmount * flight.price}} zl
         </div>
-        <div ng-if="flightLuggage > 0">
-          Luggage charge : {{flightLuggage}}
+        <div class="flightDetailsBox" ng-if="flightLuggage + flightPayment > 0">
+          <h4>Additional charge</h4>
+          <div ng-if="flightPayment > 0">
+            Payment charge : {{flightPayment}}
+          </div>
+          <div ng-if="flightLuggage > 0">
+            Luggage charge : {{flightLuggage}}
+          </div>
         </div>
-      </div>
-      <div class="flightDetailsBox">
-        <h4>Sum</h4>
-        {{reservation.price}}
+        <div class="flightDetailsBox">
+          <h4>Sum</h4>
+          {{reservation.price}}
+        </div>
       </div>
     </div>
   </div>
