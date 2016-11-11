@@ -21,6 +21,7 @@ app.service('ReservationService',['$http', 'PathService', '$location', function(
     }).then(
       function(response) {
         o.reservation = response.data;
+        o.reservation.flightInfo = reservation.flightInfo;
         $location.path('reservation_summary')
       }, function(data) {
         o.reservationError = data;

@@ -242,7 +242,7 @@ body {
   color: #AEDEE7;
 }
 
-.flightDetails {
+.flightBoxContainer {
   width: 60%;
   margin: 0 auto;
 }
@@ -276,6 +276,11 @@ body {
   font-size: 25px;
   float: left;
   width:90%;
+}
+
+.heading-content span {
+  margin: 0 auto;
+  padding: 0;
 }
 
 .heading-from {
@@ -402,14 +407,13 @@ body {
   box-shadow: 0px 0px 8px 2px #000000;
 }
 
-.flight-details-submit {
+.submit-button-container {
+  margin: 0 auto;
   margin-bottom: 5%;
   width: 40%;
-  float: left;
 }
 
 .flight-details-button {
-  float: right;
   font-size:25px;
   color:white;
   background-color: #372f45;
@@ -438,4 +442,10 @@ body {
 .flightDetailsSummaryContainer {
   float: left;
   width: 15%;
+}
+
+.flightPaymentContent {
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
 }

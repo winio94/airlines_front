@@ -1,4 +1,4 @@
-<div class="flightDetails">
+<div class="flightBoxContainer">
   <div class="flightDetailsContainer">
     <form class="flightDetailsForm" name="flightDetailsForm">
       <div class="flightDesription box-shadow">
@@ -63,7 +63,7 @@
       </div>
       <div>
       </div>
-      <div class="flight-details-submit box-shadow">
+      <div class="submit-button-container box-shadow" style="float:left;">
         <div>
           <button type="submit" ng-click="flightDetailsForm.$valid && makeReservation(reservation)" class="btn btn-lg btn-default flight-details-button">
             Make reservation. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>

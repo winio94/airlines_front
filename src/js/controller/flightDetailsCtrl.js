@@ -64,6 +64,7 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
     $scope.reservation.passengers = $scope.passengers;
     $scope.reservation.luggage = $scope.flightLuggage;
     $scope.reservation.payment = $scope.flightPayment;
+    addFlightInfo();
     ReservationService.makeReservation($scope.reservation);
   };
 
@@ -75,6 +76,15 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
       );
     };
   };
+
+  function addFlightInfo() {
+    var flightInfo = {
+      from: $scope.from,
+      to: $scope.to,
+      date: $scope.departureDayMonthYear
+    }
+    $scope.reservation.flightInfo = flightInfo;
+  }
 
   //-------------------------------WATCHERS-------------------------------//
   $scope.$watch('flightPayment', function(newValue, oldValue) {
