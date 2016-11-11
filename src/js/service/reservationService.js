@@ -15,7 +15,8 @@ app.service('ReservationService',['$http', 'PathService', '$location', function(
         "contact" : {
           "email" : reservation.contact.email,
           "phone" : reservation.contact.phone
-        }
+        },
+        "reservationDate" : getNowInMiliseconds()
       }
     }).then(
       function(response) {
@@ -33,6 +34,10 @@ app.service('ReservationService',['$http', 'PathService', '$location', function(
     o.getReservationError = function() {
       return o.reservationError;
     };
+
+    function getNowInMiliseconds() {
+      return new Date().getTime();
+    }
 
     return o;
   }]);
