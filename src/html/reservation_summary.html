@@ -1,0 +1,25 @@
+<div class="flightBoxContainer">
+  <form class="flightPayment box-shadow">
+    <div class="flightPaymentHeading">
+      <ng-heading
+      icon="fa fa-check"
+      arrow="&rarr;"
+      from="{{reservation.flightInfo.from.city}}"
+      to="{{reservation.flightInfo.to.city}}"
+      description="{{reservation.flightInfo.date}}"
+      heading-align="center"></ng-heading>
+    </div>
+    <div class="flightPaymentContent" >
+      <div class="flightPaymentDescription" style="padding:1%;">
+        Reservation code : {{reservation.reservationCode}}
+      </div>
+      <div class="submit-button-container" style="padding-bottom:1%;">
+        <div>
+          <button type="submit" ng-click="makePayment()" class="btn btn-lg btn-default flight-details-button box-shadow">
+            Make payment. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
