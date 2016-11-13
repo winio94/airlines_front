@@ -1,7 +1,5 @@
-app.service('ReservationService',['$http', 'PathService', '$location', function($http, PathService, $location) {
+app.service('ReservationService',['$http', 'PathService', '$location', '$localStorage', function($http, PathService, $location, $localStorage) {
   var o = {
-    reservation: null,
-    reservationError: null
   };
 
   o.makeReservation = function(reservation) {
@@ -20,20 +18,32 @@ app.service('ReservationService',['$http', 'PathService', '$location', function(
       }
     }).then(
       function(response) {
-        o.reservation = response.data;
-        o.reservation.flightInfo = reservation.flightInfo;
+        $localStorage.reservation = response.data;
+        $localStorage.reservation.flightInfo = reservation.flightInfo;
         $location.path('reservation_summary')
       }, function(data) {
-        o.reservationError = data;
+        $localStorage.reservationError = data;
+      });
+    };
+
+    o.createTicket = function(reservation) {
+      return $http({
+        method: 'POST',
+        url: PathService.getPath() + 'tickets',
+        data:reservation.reservationCode
+      }).then(function(response){
+        $location.path('flights')
+      }, function(data) {
+        $location.path('/')
       });
     };
 
     o.getReservation = function() {
-      return o.reservation;
+      return $localStorage.reservation;
     };
 
     o.getReservationError = function() {
-      return o.reservationError;
+      return $localStorage.reservationError;
     };
 
     function getNowInMiliseconds() {

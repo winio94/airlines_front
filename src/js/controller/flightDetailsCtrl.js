@@ -44,9 +44,11 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
       "description": "Deposit money."
     }
   ];
+  
   PathService.retrieveDataFrom($scope.flight._links.from.href).then(function(result) {
     $scope.from = result;
   });
+
   PathService.retrieveDataFrom($scope.flight._links.to.href).then(function(result) {
     $scope.to = result;
   });
