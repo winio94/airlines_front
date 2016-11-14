@@ -2,7 +2,7 @@ app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'Aut
 function($scope, $rootScope, $http, $location, AuthService, PathService) {
 
   var authenticate = function(credentials, callback) {
-    $rootScope.headers = credentials ? {authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)} : {};
+    $rootScope.headers = credentials ? {authorization : "Basic " + btoa(credentials.email + ":" + credentials.password)} : {};
     $http.get(PathService.getPath() + 'user', {headers : $rootScope.headers})
     .success(function(data) {
       if (data.name) {

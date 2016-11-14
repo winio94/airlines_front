@@ -4,7 +4,7 @@ app.service('AuthService', ['$http', function($http){
     isAuthenticated : false,
     isError : false,
     isAdmin : false,
-    adminAuthority :'ROLE_ADMIN'
+    adminAuthority :'ADMIN'
   };
 
   o.getAuthorizationHeader = function() {
