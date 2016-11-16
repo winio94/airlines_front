@@ -41,6 +41,10 @@ app.config(function($routeProvider, $httpProvider) {
 		templateUrl : "src/html/login.html",
 		controller : "HeaderCtrl"
 	})
+	.when("/register", {
+		templateUrl : "src/html/register.html",
+		controller : "HeaderCtrl"
+	})
 	.when("/flight_choose", {
 		templateUrl : "src/html/flight_choose.html",
 		controller : "FlightChooseCtrl"
