@@ -22,11 +22,11 @@ function($scope, $rootScope, $http, $location, AuthService, PathService) {
 
   if($rootScope.authenticated === false) {
     authenticate();
-  }
+  };
 
   if(!$rootScope.credentials) {
     $rootScope.credentials = {};
-  }
+  };
 
   $scope.login = function() {
     authenticate($rootScope.credentials, function() {
@@ -43,14 +43,33 @@ function($scope, $rootScope, $http, $location, AuthService, PathService) {
   };
 
   $scope.logout = function() {
-    $http.post('logout', {}).success(function() {
+    $http({
+      method: 'POST',
+      url: PathService.getPath() + 'logout'
+    }).then(function() {
       $rootScope.authenticated = false;
       $rootScope.isAdmin = false;
       AuthService.setAuthorizationHeader("");
       $location.path("/");
-    }).error(function(data) {
+    }, function(data) {
       $rootScope.authenticated = false;
       $rootScope.isAdmin = false;
+    });
+  };
+
+  $scope.register = function(credentials) {
+    $http({
+      method: 'POST',
+      url: PathService.getPath() + 'users',
+      data: {
+        "email": credentials.email,
+        "password" : credentials.password
+      }
+    }).then(function(response) {
+      $location.path("/login")
+    }, function(data) {
+      $location.path("/register");
+      $scope.error = true;
     });
   };
 
