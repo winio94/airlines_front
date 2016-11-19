@@ -1,17 +1,17 @@
 <div class="login_container">
   <div class="login_wrapper box-shadow">
-    <form id="authorize_form" role="form" ng-submit="register(credentials)">
+    <form id="authorize_form" role="form" ng-submit="register(reservation_credentials)">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="text"class="form-control" id="email" name="email" ng-model="credentials.email"/>
+        <input type="text"class="form-control" id="email" name="email" ng-model="reservation_credentials.email"/>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
+        <input type="password" class="form-control" id="password" name="password" ng-model="reservation_credentials.password"/>
       </div>
       <div class="form-group">
         <label for="passwordRetype">Password retype:</label>
-        <input type="password" class="form-control" id="passwordRetype" name="passwordRetype" ng-model="credentials.passwordRetype"/>
+        <input type="password" class="form-control" id="passwordRetype" name="passwordRetype" ng-model="reservation_credentials.passwordRetype"/>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -1,42 +1,39 @@
-app.service('AuthService', ['$http', function($http){
+app.service('AuthService', ['$http', '$localStorage', function($http, $localStorage){
   var o = {
-    authorizationHeader : "",
-    isAuthenticated : false,
-    isError : false,
-    isAdmin : false,
+
     adminAuthority :'ADMIN'
   };
 
   o.getAuthorizationHeader = function() {
-    return o.authorizationHeader;
+    return $localStorage.authorizationHeader;
   };
 
   o.setAuthorizationHeader = function(authHeader) {
-    o.authorizationHeader = authHeader;
+    $localStorage.authorizationHeader = authHeader;
   };
 
   o.isAuthenticated = function() {
-    return o.isAuthenticated;
+    return $localStorage.isAuthenticated;
   };
 
   o.setAuthenticated = function(isAuth) {
-    o.isAuthenticated = isAuth;
+    $localStorage.isAuthenticated = isAuth;
   };
 
   o.isErrorActive = function() {
-    return o.isError;
+    return $localStorage.isError;
   };
 
   o.setError = function(isErr) {
-    o.isError = isErr;
+    $localStorage.isError = isErr;
   };
 
   o.isAdmin = function() {
-    return o.isAdmin;
+    return $localStorage.isAdmin;
   };
 
-  o.setIsAdmin = function() {
-    o.isAdmin = true;
+  o.setIsAdmin = function(isAdmin) {
+    $localStorage.isAdmin = isAdmin;
   };
 
   o.checkIfAdmin = function(authorities) {
