@@ -59,8 +59,16 @@ body {
 }
 
 #content {
-  padding-top: 2%;
   padding-bottom: 180px;
+}
+
+.contentHeader {
+  padding-top: 0.5%;
+  padding-bottom: 2%;
+  color: #372f45;
+  margin: 0 auto;
+  text-align: center;
+  text-shadow: 1px 1px  #372f45;
 }
 
 .login_container{
@@ -152,12 +160,10 @@ body {
   text-align: center;
 }
 
-.form_button_part .btn-circle {
-  margin-top: 70%;
+.form_button_part .btn-square {
   outline: none;
   text-align: center;
-  border-radius: 50%;
-  font-size: 33px;
+  font-size: 20px;
 }
 
 .flightClassWrapper {
@@ -208,41 +214,41 @@ body {
   padding-bottom: 5px;
 }
 
-.searchedFlightsBody td {
+.contentTableBody td {
   vertical-align: middle !important;
   font-size: 15px;
   color: #372f45;
   white-space: nowrap;
 }
 
-.searchedFlightsBody td.price {
+.contentTableBody td.price {
   vertical-align: middle !important;
   font-size: 25px;
   font-weight: bold;
   color: black;
 }
 
-.searchedFlightsBody td.price button {
+.contentTableBody td.price button {
   width: 90%;
 }
 
-.searchedFlightsHead th {
+.contentTableHead th {
   margin-left: 5%;
   cursor: pointer;
 }
 
-.flightChoose {
+.contentTableContainer {
   background: white;
   margin:0 auto;
   width: 60%;
   border-radius: 5px;
 }
 
-.flightChoose th {
+.contentTableContainer th {
   color: white;
   background-color: #372f45;
 }
-.flightChoose th :hover{
+.contentTableContainer th :hover{
   color: #AEDEE7;
 }
 
@@ -470,4 +476,18 @@ body {
 .alert-danger {
   margin-top: 10px;
   margin-bottom: 5px !important;
+}
+
+.auth {
+  background-color: #372f45;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: white;
+  background-color: #372f45;
+}
+
+ul .dropdown-menu {
+  width: 100% !important;
+  min-width: 100% !important;
 }
