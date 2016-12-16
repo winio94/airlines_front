@@ -1,9 +1,12 @@
-<div class="flightChoose" ng-controller="FlightChooseCtrl" ng-show="flights.length > 0">
+<div class="contentHeader">
+  <h1>Flights from <b>{{flightFrom.city}}</b> to <b>{{flightTo.city}}</b></h1>
+</div>
+<div class="contentTableContainer" ng-controller="FlightChooseCtrl" ng-show="flights.length > 0">
   <div class="box-shadow">
 
     <table st-table="flightCollection" st-safe-src="flights" class="table table-striped">
       <thead>
-        <tr class="searchedFlightsHead">
+        <tr class="contentTableHead">
           <th st-sort="flightNumber">Flight Number</th>
           <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
           <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> Arrival date</th>
@@ -16,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="searchedFlightsBody" ng-repeat="flight in flightCollection">
+        <tr class="contentTableBody" ng-repeat="flight in flightCollection">
           <td>{{flight.flightNumber}}</td>
           <td>{{flight.departureDate}}</td>
           <td>{{flight.arrivalDate}}</td>
