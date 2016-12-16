@@ -45,5 +45,13 @@ app.service('AuthService', ['$http', '$localStorage', function($http, $localStor
     return false;
   };
 
+  o.setPrincipal = function(principal) {
+    $localStorage.principal = principal;
+  };
+
+  o.getPrincipal = function() {
+    return $localStorage.principal;
+  };
+
   return o;
 }]);
