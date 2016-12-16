@@ -4,8 +4,8 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', funct
 	return {
 		request: function (config) {
 			var authService = $injector.get('AuthService');
-			var headers = authService.getAuthorizationHeader().authorization;
-			config.headers['Authorization'] = headers;
+			var headers = authService.getAuthorizationHeader();
+			config.headers['Authorization'] = getAuthorizationHeader(headers);
 			return config;
 		},
 
@@ -21,21 +21,21 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', funct
 			}
 			return res;
 		}
-	}
+	};
+
+	function getAuthorizationHeader(headers) {
+		return (headers === null || headers === undefined ? null : headers.authorization)
+	};
 }]);
 
 app.config(function($routeProvider, $httpProvider) {
-	$routeProvider.when("/", {
-		templateUrl : "src/html/home.html",
-		controller  : "HomeCtrl"
-	})
-	.when("/flights", {
+	$routeProvider.when("/flights", {
 		templateUrl : "src/html/flights.html",
 		controller  : "FlightCtrl"
 	})
 	.when("/customers", {
 		templateUrl : "src/html/customers.html",
-		controller  : "CustomerCtrl"
+		controller  : "CustomersCtrl"
 	})
 	.when("/login", {
 		templateUrl : "src/html/login.html",
@@ -57,7 +57,16 @@ app.config(function($routeProvider, $httpProvider) {
 		templateUrl : "src/html/reservation_summary.html",
 		controller : "ReservationCtrl"
 	})
-	.otherwise({ redirectTo: '/' });
+	.when("/customers/:id", {
+		templateUrl: "src/html/customer_reservation_page.html",
+		controller: "CustomerCtrl",
+		resolve: {
+			customer: ['CustomerService', '$route', function(CustomerService, $route) {
+				return CustomerService.findCustomerByUserId($route.current.params.id);
+			}]
+		}
+	})
+	.otherwise({ redirectTo: '/flights' });
 
 	$httpProvider.interceptors.push('airlinesRequestInterceptor');
 });
