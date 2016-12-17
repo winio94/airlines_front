@@ -6,7 +6,7 @@
 </div>
 <div class="contentTableContainer" ng-show="activeReservations.length > 0">
   <div class="box-shadow">
-    <table st-table="reservationCollection" st-safe-src="customer.reservations" class="table table-striped">
+    <table st-table="activeReservationCollection" st-safe-src="activeReservations" class="table table-striped">
       <thead>
         <tr class="contentTableHead">
           <th st-sort="reservationDate">Date of reservation</th>
@@ -17,24 +17,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="contentTableBody" ng-repeat="reservation in reservationCollection">
+        <tr class="contentTableBody" ng-repeat="reservation in activeReservationCollection">
           <td>{{reservation.reservationDate}}</td>
           <td>{{reservation.flight.arrivalDate}}</td>
           <td>{{reservation.flight.to.city}}</td>
-          <td >
-            <button type="button" ng-click="showDetails(reservation)" class="btn btn-sm btn-success">
-              {{flight.price}}<i class="glyphicon glyphicon-info-sign"></i>
-            </button>
-          </td>
-          <td >
-            <button type="button" ng-click="showDetails(reservation)" class="btn btn-sm btn-danger">
-              {{flight.price}}<i class="glyphicon glyphicon-remove"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          <td>
+            <button
+            uib-popover-template="'popover.html'"
+            popover-placement="right"
+            popover-trigger="focus"
+            type="button"
+            class="btn btn-sm btn-success">
+            <i class="glyphicon glyphicon-info-sign"></i>
+          </button>
+        </td>
+        <td >
+          <button type="button" ng-click="showDetails(reservation)" class="btn btn-sm btn-danger">
+            {{flight.price}}<i class="glyphicon glyphicon-remove"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 <div ng-show="finalizedReservations.length > 0" class="contentHeader">
   <h1><b>Finalized</b> reservations</h1>
@@ -42,9 +47,9 @@
 <div ng-show="finalizedReservations.length === 0" class="contentHeader">
   <h1>You have no <b>finalized</b> reservations</h1>
 </div>
-<div class="contentTableContainer" ng-show="customer.reservations.length > 0">
+<div class="contentTableContainer" ng-show="finalizedReservations.length > 0">
   <div class="box-shadow">
-    <table st-table="reservationCollection" st-safe-src="customer.reservations" class="table table-striped">
+    <table st-table="finalizedReservationCollection" st-safe-src="finalizedReservations" class="table table-striped">
       <thead>
         <tr class="contentTableHead">
           <th st-sort="reservationDate">Date of reservation</th>
@@ -54,19 +59,55 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="contentTableBody" ng-repeat="reservation in reservationCollection">
+        <tr class="contentTableBody" ng-repeat="reservation in finalizedReservationCollection">
           <td>{{reservation.reservationDate}}</td>
           <td>{{reservation.flight.arrivalDate}}</td>
           <td>{{reservation.flight.to.city}}</td>
           <td>
-            <button type="button" ng-click="showDetails(reservation)" class="btn btn-sm btn-success">
-              {{flight.price}}<i class="glyphicon glyphicon-info-sign"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <button
+            uib-popover-template="'popover.html'"
+            popover-placement="right"
+            popover-trigger="focus"
+            type="button"
+            class="btn btn-sm btn-success">
+            <i class="glyphicon glyphicon-info-sign"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-HELLO customer
-{{customer}}
+</div>
+<script type="text/ng-template" id="popover.html">
+  <div>
+    <div class="form-group">
+      <div class="summaryHeading">
+        Reservation Details
+      </div>
+    </div>
+    <div class="form-group">
+      <h4>Contact</h4>
+      email : <span class="niceSpanFontSmall">{{reservation.contact.email}}</span></br>
+      phone : <span class="niceSpanFontSmall">{{reservation.contact.phone}}</span>
+    </div>
+    <div class="form-group">
+      <h4>flight</h4>
+      arrivalDate : <span class="niceSpanFontSmall">{{reservation.flight.arrivalDate}}</span></br>
+      departureDate : <span class="niceSpanFontSmall">{{reservation.flight.departureDate}}</span></br>
+      duration : <span class="niceSpanFontSmall">{{reservation.flight.duration}} min</span></br>
+      flightClass : <span class="niceSpanFontSmall">{{reservation.flight.flightClass}}</span></br>
+      flightNumber : <span class="niceSpanFontSmall">{{reservation.flight.flightNumber}}</span></br>
+      from : <span class="niceSpanFontSmall">{{reservation.flight.from.city}}</span></br>
+      to : <span class="niceSpanFontSmall">{{reservation.flight.to.city}}</span>
+    </div>
+    <div class="form-group">
+      <h4>passengers</h4>
+      <div ng-repeat="passenger in reservation.passengers">
+        <span class="niceSpanFontSmall">{{passenger.firstName}} {{passenger.lastName}}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <h4>Price : <span class="niceSpanFontMedium">{{reservation.price}} zł</span></h4>
+    </div>
+  </div>
+</script>
