@@ -4,6 +4,10 @@
   border:0;
 }
 
+a {
+  cursor: pointer;
+}
+
 html {
   height: 100%;
 }
@@ -490,4 +494,15 @@ body {
 ul .dropdown-menu {
   width: 100% !important;
   min-width: 100% !important;
+}
+
+.popover .arrow {
+  display: none;
+}
+
+.popover {
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 8px 2px #000000;
+  -moz-box-shadow: 0px 0px 8px 2px #000000;
+  box-shadow: 0px 0px 8px 2px #000000;
 }
