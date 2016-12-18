@@ -10,7 +10,7 @@
       <thead>
         <tr class="contentTableHead">
           <th st-sort="reservationDate">Date of reservation</th>
-          <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> Arrival date</th>
+          <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
           <th st-sort="destination">Destination</th>
           <th>Details</th>
           <th>Cancel</th>
@@ -19,7 +19,7 @@
       <tbody>
         <tr class="contentTableBody" ng-repeat="reservation in activeReservationCollection">
           <td>{{reservation.reservationDate}}</td>
-          <td>{{reservation.flight.arrivalDate}}</td>
+          <td>{{reservation.flight.departureDate}}</td>
           <td>{{reservation.flight.to.city}}</td>
           <td>
             <button
@@ -31,14 +31,18 @@
             <i class="glyphicon glyphicon-info-sign"></i>
           </button>
         </td>
-        <td >
-          <button type="button" ng-click="showDetails(reservation)" class="btn btn-sm btn-danger">
-            {{flight.price}}<i class="glyphicon glyphicon-remove"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <td>
+          <button
+          uib-popover-template="'cancel_popover.html'"
+          popover-placement="right"
+          popover-trigger="click"
+          type="button"
+          class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
 <div ng-show="finalizedReservations.length > 0" class="contentHeader">
@@ -53,31 +57,60 @@
       <thead>
         <tr class="contentTableHead">
           <th st-sort="reservationDate">Date of reservation</th>
-          <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> Arrival date</th>
+          <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
           <th st-sort="destination">Destination</th>
           <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="contentTableBody" ng-repeat="reservation in finalizedReservationCollection">
-          <td>{{reservation.reservationDate}}</td>
-          <td>{{reservation.flight.arrivalDate}}</td>
-          <td>{{reservation.flight.to.city}}</td>
-          <td>
-            <button
-            uib-popover-template="'popover.html'"
-            popover-placement="right"
-            popover-trigger="focus"
-            type="button"
-            class="btn btn-sm btn-success">
-            <i class="glyphicon glyphicon-info-sign"></i>
-          </button>
+          <th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="contentTableBody" ng-repeat="reservation in finalizedReservationCollection">
+            <td>{{reservation.reservationDate}}</td>
+            <td>{{reservation.flight.departureDate}}</td>
+            <td>{{reservation.flight.to.city}}</td>
+            <td>
+              <button
+              uib-popover-template="'popover.html'"
+              popover-placement="right"
+              popover-trigger="focus"
+              type="button"
+              class="btn btn-sm btn-success">
+              <i class="glyphicon glyphicon-info-sign"></i>
+            </button>
+            <td>
+              <button
+              uib-popover="Finalized reservation cannot be canceled."
+              popover-placement="right"
+              popover-trigger="click"
+              type="button"
+              class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i>
+            </button>
+          </td>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 </div>
+
+<script type="text/ng-template" id="cancel_popover.html">
+  <div>
+    <p>Please provide <b>reservation code</b> in order to cancell this reservation.</p>
+  </div>
+  <div style="margin-bottom:10px;">
+    <input type="text" class="form-control"  ng-model="reservationCode" placeholder="Enter reservation code here"></input>
+  </div>
+  <div>
+    <button ng-disabled="!reservationCode" type="button" ng-click="removeReservation(reservation, reservationCode)"
+    class="btn btn-sm btn-danger">
+    Cancell reservation.
+  </button>
+  <div class="alert alert-danger" ng-show="error">
+    Wrong reservation code. Try again.
+  </div>
+</div>
+</script>
+
 <script type="text/ng-template" id="popover.html">
   <div>
     <div class="form-group">
@@ -87,21 +120,21 @@
     </div>
     <div class="form-group">
       <h4>Contact</h4>
-      email : <span class="niceSpanFontSmall">{{reservation.contact.email}}</span></br>
-      phone : <span class="niceSpanFontSmall">{{reservation.contact.phone}}</span>
+      E-mail : <span class="niceSpanFontSmall">{{reservation.contact.email}}</span></br>
+      Phone number : <span class="niceSpanFontSmall">{{reservation.contact.phone}}</span>
     </div>
     <div class="form-group">
-      <h4>flight</h4>
-      arrivalDate : <span class="niceSpanFontSmall">{{reservation.flight.arrivalDate}}</span></br>
-      departureDate : <span class="niceSpanFontSmall">{{reservation.flight.departureDate}}</span></br>
-      duration : <span class="niceSpanFontSmall">{{reservation.flight.duration}} min</span></br>
-      flightClass : <span class="niceSpanFontSmall">{{reservation.flight.flightClass}}</span></br>
-      flightNumber : <span class="niceSpanFontSmall">{{reservation.flight.flightNumber}}</span></br>
-      from : <span class="niceSpanFontSmall">{{reservation.flight.from.city}}</span></br>
-      to : <span class="niceSpanFontSmall">{{reservation.flight.to.city}}</span>
+      <h4>Flight</h4>
+      Departure : <span class="niceSpanFontSmall">{{reservation.flight.departureDate}}</span></br>
+      Arrival : <span class="niceSpanFontSmall">{{reservation.flight.arrivalDate}}</span></br>
+      Duration : <span class="niceSpanFontSmall">{{reservation.flight.duration}} min</span></br>
+      Class : <span class="niceSpanFontSmall">{{reservation.flight.flightClass}}</span></br>
+      Flight number : <span class="niceSpanFontSmall">{{reservation.flight.flightNumber}}</span></br>
+      Flight from : <span class="niceSpanFontSmall">{{reservation.flight.from.city}}</span></br>
+      Flight to : <span class="niceSpanFontSmall">{{reservation.flight.to.city}}</span>
     </div>
     <div class="form-group">
-      <h4>passengers</h4>
+      <h4>Flight passengers</h4>
       <div ng-repeat="passenger in reservation.passengers">
         <span class="niceSpanFontSmall">{{passenger.firstName}} {{passenger.lastName}}</span>
       </div>
