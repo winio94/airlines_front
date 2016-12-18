@@ -5,6 +5,35 @@ app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportSe
   $scope.isClassEnabled = false;
   $scope.selectedFlight = Flight.getSelectedFlight();
 
+
+  $scope.dateOptions = {
+    "dateDisabled": disabled,
+    "formatYear": 'dd.MM.yyyy',
+    "startingDay": 1
+  };
+
+  function disabled(data) {
+    var date = data.date,
+      mode = data.mode;
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  }
+
+  $scope.openDepartCalendar = function() {
+    $scope.departCalendarPopup.opened = true;
+  };
+
+  $scope.openReturnCalendar = function() {
+    $scope.returnCalendarPopup.opened = true;
+  };
+
+  $scope.departCalendarPopup = {
+    opened: false
+  };
+
+  $scope.returnCalendarPopup = {
+    opened: false
+  };
+
   //-------------------------------FUNCTIONS-------------------------------//
 
   $scope.getAirportsByCityName = function(cityName)  {

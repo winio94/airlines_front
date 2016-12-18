@@ -11,13 +11,13 @@
     </div>
     <div class="flightPaymentContent" >
       <div class="flightPaymentDescription" style="padding:1%;">
-        Reservation code : <span class="niceSpanFont">{{reservation.reservationCode}}</span>
+        Reservation code : <span class="niceSpanFontMedium">{{reservation.reservationCode}}</span>
         <br>
-        After payemnt approval, we will send You a ticket on <span class="niceSpanFont">{{reservation.contact.email}}</span> address.
+        After payemnt approval, we will send You a ticket on <span class="niceSpanFontMedium">{{reservation.contact.email}}</span> address.
       </div>
       <div class="submit-button-container" style="padding-bottom:1%;">
         <div>
-          <button type="submit" ng-click="createTicket()" class="btn btn-lg btn-default flight-details-button box-shadow">
+          <button type="submit" ng-click="confirmReservation()" class="btn btn-lg btn-default flight-details-button box-shadow">
             Make payment. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
           </button>
         </div>

@@ -1,16 +1,21 @@
 app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'AuthService', 'PathService', function($scope, $rootScope, $http, $location, AuthService, PathService) {
   $rootScope.authenticated = AuthService.isAuthenticated();
   $rootScope.isAdmin = AuthService.isAdmin();
+  $rootScope.principal = AuthService.getPrincipal();
   var authenticate = function(credentials, callback) {
     $rootScope.headers = credentials ? {authorization : "Basic " + btoa(credentials.email + ":" + credentials.password)} : {};
     $http.get(PathService.getPath() + 'user', {headers : $rootScope.headers})
     .success(function(data) {
       if (data.name) {
+        AuthService.setPrincipal(data.principal);
+        $rootScope.principal = AuthService.getPrincipal();
         AuthService.setAuthenticated(true);
-        $rootScope.authenticated = true;
         AuthService.setAuthorizationHeader($rootScope.headers);
+        $rootScope.authenticated = true;
         $scope.checkIfAdmin(data.authorities);
       } else {
+        AuthService.setPrincipal({});
+        $rootScope.principal = {};
         AuthService.setIsAdmin(false);
         AuthService.setAuthenticated(false);
         $rootScope.authenticated = false;
@@ -32,7 +37,7 @@ app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'Aut
     authenticate($rootScope.credentials, function() {
       if ($rootScope.authenticated) {
         AuthService.setAuthorizationHeader($rootScope.headers);
-        $location.path("/");
+        $location.path("/flights");
         $scope.error = false;
       } else {
         $scope.error = true;
@@ -47,11 +52,14 @@ app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'Aut
     }).then(function() {
       AuthService.setAuthenticated(false);
       AuthService.setIsAdmin(false);
+      AuthService.setAuthenticated(false);
+      AuthService.setAuthorizationHeader("");
+      AuthService.setPrincipal({});
       $rootScope.authenticated = false;
       $rootScope.isAdmin = false;
-      AuthService.setAuthorizationHeader("");
-      AuthService.setAuthenticated(false);
-      $location.path("/");
+      $location.path("/flights");
+      $scope.error = false;
+
     }, function(data) {
       $scope.error = true;
     });
