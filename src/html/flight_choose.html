@@ -1,5 +1,5 @@
 <div class="contentHeader">
-  <h1>Flights from <b>{{flightFrom.city}}</b> to <b>{{flightTo.city}}</b></h1>
+  <p translate="FLIGHT_CHOOSE_TITLE" translate-values="{fromCity : flightFrom.city, toCity : flightTo.city}"></p>
 </div>
 <div class="contentTableContainer" ng-controller="FlightChooseCtrl" ng-show="flights.length > 0">
   <div class="box-shadow">
@@ -7,12 +7,12 @@
     <table st-table="flightCollection" st-safe-src="flights" class="table table-striped">
       <thead>
         <tr class="contentTableHead">
-          <th st-sort="flightNumber">Flight Number</th>
-          <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
-          <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> Arrival date</th>
-          <th st-sort="from">From</th>
-          <th st-sort="to">To</th>
-          <th st-sort="price"><i class="fa fa-usd" style="font-size:40px;"></i> Price</th>
+          <th st-sort="flightNumber" translate="FLIGHT_NUMBER"></th>
+          <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> <span translate="FLIGHT_DEPARTURE_DATE"></span></th>
+          <th st-sort="arrivalDate"><i class="fa fa-plane" style="font-size:40px;"></i> <span translate="FLIGHT_ARRIVAL_DATE"></span></th>
+          <th st-sort="from" translate="FROM"></th>
+          <th st-sort="to" translate="TO"></th>
+          <th st-sort="price"><i class="fa fa-usd" style="font-size:40px;"></i> <span translate="PRICE"></span></th>
         </tr>
         <tr>
           <th colspan="5" style="background-color: white;"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>

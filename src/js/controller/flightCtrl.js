@@ -5,7 +5,6 @@ app.controller("FlightCtrl", ['$scope', '$location', 'FlightService', 'AirportSe
   $scope.isClassEnabled = false;
   $scope.selectedFlight = Flight.getSelectedFlight();
 
-
   $scope.dateOptions = {
     "dateDisabled": disabled,
     "formatYear": 'dd.MM.yyyy',

@@ -11,11 +11,19 @@
         <li ng-hide="authenticated"><a class="auth" href="#/login"><i class="fa fa-sign-in" style="font-size:40px;"></i> Login</a></li>
         <li ng-hide="authenticated"><a class="auth" href="#/register"><i class="fa fa-user-plus" style="font-size:40px;"></i> Register</a></li>
         <li ng-show="authenticated">
-            <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" style="font-size:40px;"></i> Settings <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a ng-href="#/customers/{{principal.id}}">My reservations</a></li>
-                <li><a ng-href="#/customers/{{principal.id}}">Preferences</a></li>
-            </ul>
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" style="font-size:40px;"></i> Settings <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a ng-href="#/customers/{{principal.id}}">My reservations</a></li>
+            <li><a ng-href="#/customers/{{principal.id}}">Preferences</a></li>
+          </ul>
+        </li>
+        <li class="languages" ng-controller="LanguageCtrl">
+          <a style="float:left;" title="Polski" ng-click="changeLanguageTo('pl')">
+            <img src="resource/poland_flag.svg" height="14"> PL
+          </a>
+          <a style="float:left;" title="English" ng-click="changeLanguageTo('en')">
+            <img src="resource/uk_flag.svg" height="14"> EN
+          </a>
         </li>
       </ul>
     </div>

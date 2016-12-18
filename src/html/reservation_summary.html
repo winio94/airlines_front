@@ -1,3 +1,6 @@
+<div class="contentHeader">
+  <p translate="RESERVATION_CONFIRMATION_TITLE"></p>
+</div>
 <div class="flightBoxContainer">
   <form class="flightPayment box-shadow">
     <div class="flightPaymentHeading">
@@ -11,14 +14,14 @@
     </div>
     <div class="flightPaymentContent" >
       <div class="flightPaymentDescription" style="padding:1%;">
-        Reservation code : <span class="niceSpanFontMedium">{{reservation.reservationCode}}</span>
+        <span translate="RESERVATION_CODE"></span> : <span class="niceSpanFontMedium">{{reservation.reservationCode}}</span>
         <br>
-        After payemnt approval, we will send You a ticket on <span class="niceSpanFontMedium">{{reservation.contact.email}}</span> address.
+        <p translate="RESERVATION_CONFIRMATION_MESSAGE" translate-values="{address: reservation.contact.email}"></p>
       </div>
-      <div class="submit-button-container" style="padding-bottom:1%;">
-        <div>
+      <div class="col-lg-5" style="float:none; margin: 0 auto;">
+        <div class="submit-button-container">
           <button type="submit" ng-click="confirmReservation()" class="btn btn-lg btn-default flight-details-button box-shadow">
-            Make payment. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
+            <span translate="MAKE_PAYMENT"></span> {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
           </button>
         </div>
       </div>
