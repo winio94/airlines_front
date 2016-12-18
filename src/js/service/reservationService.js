@@ -46,21 +46,34 @@ app.service('ReservationService',['$http', '$q', 'PathService', '$location', '$l
       $location.path('flights');
     };
 
-    o.getReservation = function() {
-      return $localStorage.reservation;
-    };
+    o.removeReservation = function(reservation, reservationCode) {
+      return $http({
+        method: 'DELETE',
+        url: PathService.getPath() + 'reservations/' + reservation.id,
+        data :  reservationCode
+      }).then(
+        function(response) {
+          return response;
+        }, function(data) {
+          return data;
+        });
+      };
 
-    o.getReservationError = function() {
-      return $localStorage.reservationError;
-    };
+      o.getReservation = function() {
+        return $localStorage.reservation;
+      };
 
-    function findCustomer() {
-      var principal = $localStorage.principal;
-      if(principal && principal.id) {
-        return $http.get(PathService.getPath() + 'customers/search/findCustomerByUserId?id=' + principal.id);
+      o.getReservationError = function() {
+        return $localStorage.reservationError;
+      };
+
+      function findCustomer() {
+        var principal = $localStorage.principal;
+        if(principal && principal.id) {
+          return $http.get(PathService.getPath() + 'customers/search/findCustomerByUserId?id=' + principal.id);
+        }
+        return $q.when(null);
       }
-      return $q.when(null);
-    }
 
-    return o;
-  }]);
+      return o;
+    }]);
