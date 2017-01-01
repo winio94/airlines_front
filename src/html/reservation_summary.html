@@ -14,14 +14,12 @@
     </div>
     <div class="flightPaymentContent" >
       <div class="flightPaymentDescription" style="padding:1%;">
-        <span translate="RESERVATION_CODE"></span> : <span class="niceSpanFontMedium">{{reservation.reservationCode}}</span>
-        <br>
         <p translate="RESERVATION_CONFIRMATION_MESSAGE" translate-values="{address: reservation.contact.email}"></p>
       </div>
       <div class="col-lg-5" style="float:none; margin: 0 auto;">
         <div class="submit-button-container">
           <button type="submit" ng-click="confirmReservation()" class="btn btn-lg btn-default flight-details-button box-shadow">
-            <span translate="MAKE_PAYMENT"></span> {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
+            <span translate="GO_TO_FLIGHT_SEARCH_PAGE"></span>&nbsp<i class="fa fa-plane"></i>
           </button>
         </div>
       </div>

@@ -3,7 +3,7 @@
 </div>
 <div class="flightBoxContainer">
   <div class="flightDetailsContainer">
-    <form class="flightDetailsForm" name="flightDetailsForm">
+    <form class="flightDetailsForm" novalidate name="flightDetailsForm">
       <div class="flightDesription box-shadow">
         <ng-heading icon="fa fa-plane" from="{{from.city}}" to="{{to.city}}" arrow="&rarr;"></ng-heading>
         <div class="flightDescriptionContent">
@@ -53,7 +53,7 @@
           <ng-double-check-box  left-input-heading="FREE_LUGGAGE" right-input-heading="REGISTERED_LUGGAGE"
           left-description="FREE_LUGGAGE_DESCRIPTION"
           right-description="REGISTERED_LUGGAGE_DESCRIPTION"
-          left-label=0.0 label-comment=" zl" right-label=50.00 model=flightLuggage></ng-double-check-box>
+          left-label=0.0 label-comment=" zł" right-label=50.00 model=flightLuggage></ng-double-check-box>
         </div>
       </div>
       <div class="flightPayment box-shadow">
@@ -66,7 +66,7 @@
           left-label=0
           center-label=9
           right-label=0
-          label-comment=" zl"
+          label-comment=" zł"
           model=flightPayment></ng-triple-check-box>
         </div>
       </div>
@@ -77,7 +77,7 @@
           <button type="submit"
           ng-click="flightDetailsForm.$valid && makeReservation(reservation)"
           class="btn btn-lg btn-default flight-details-button">
-          <span translate="MAKE_RESERVATION"></span> {{reservation.price}} zl
+          <span translate="MAKE_RESERVATION"></span> {{reservation.price}} zł
           <i class="glyphicon glyphicon-arrow-right"></i>
         </button>
       </div>
@@ -94,15 +94,15 @@
       <div class="flightDetailsBox">
         <h4 translate="TICKETS"></h4>
         {{passengersAmmount}} x <span translate="PASSENGER"></span> :
-        {{passengersAmmount * flight.price}} zl
+        {{passengersAmmount * flight.price}} zł
       </div>
       <div class="flightDetailsBox" ng-if="flightLuggage + flightPayment > 0">
         <h4 translate="ADDITIONAL_CHARGE"></h4>
         <div ng-if="flightPayment > 0">
-          <span translate="PAYMENT_CHARGE"></span>: {{flightPayment}}
+          <span translate="PAYMENT_CHARGE"></span>: {{flightPayment}} zł
         </div>
         <div ng-if="flightLuggage > 0">
-          <span translate="LUGGAGE_CHARGE"></span>: {{flightLuggage}}
+          <span translate="LUGGAGE_CHARGE"></span>: {{flightLuggage}} zł
         </div>
       </div>
       <div class="flightDetailsBox">
