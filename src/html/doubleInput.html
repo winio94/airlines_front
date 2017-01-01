@@ -1,26 +1,52 @@
 <div class="inputContainer">
-  <div class="containerTitle">{{headingNumber}}{{heading}}</div>
+  <div class="containerTitle">{{headingNumber}} <span translate="{{heading}}"></span></div>
   <div class="form-group leftInputContainer" style="float:left;">
-    <label>{{leftInputHeading}}</label>
+    <label><p translate="{{leftInputHeading}}"></p></label>
     <div>
       <input class="form-control ngMessageSample" type="{{inputType}}" name="doubleInputLeft{{index}}"
       ng-model="modelLeft" ng-minlength="{{leftMinLength}}" ng-maxlength="{{leftMaxLength}}" ng-pattern="leftPattern" required>
       <div ng-messages="form['doubleInputLeft' + index].$error" ng-show="form.$dirty || form.$submitted" class="ngMessagesClass" ng-messages-multiple>
-        <div ng-message="minlength" class="ngMessageClass"> {{leftInputHeading}} must have at least {{leftMinLength}} characters.</div>
-        <div ng-message="maxlength" class="ngMessageClass"> {{leftInputHeading}} must have at most {{leftMaxLength}} characters.</div>
-        <div ng-message="pattern" class="ngMessageClass"> {{leftInputHeading}}{{leftPatternMessage}}</div>
+        <div ng-message="minlength" class="ngMessageClass">
+          <span translate="{{leftInputHeading}}"></span>&nbsp
+          <span translate="CHARACTERS_MIN_AMOUNT_CONSTRAINT"></span>&nbsp
+          <span translate="{{leftMinLength}}"></span>&nbsp
+          <span translate="CHARACTERS"></span>
+        </div>
+        <div ng-message="maxlength" class="ngMessageClass">
+          <span translate="{{leftInputHeading}}"></span>&nbsp
+          <span translate="CHARACTERS_MAX_AMOUNT_CONSTRAINT"></span>&nbsp
+          <span translate="{{leftMaxLength}}"></span>&nbsp
+          <span translate="CHARACTERS"></span>
+        </div>
+        <div ng-message="pattern" class="ngMessageClass">
+          <span translate="{{leftInputHeading}}"></span>&nbsp
+          <span translate="{{leftPatternMessage}}"></span>
+        </div>
       </div>
     </div>
   </div>
   <div class="form-group rightInputContainer" style="float:left">
-    <label>{{rightInputHeading}}</label>
+    <label><p translate="{{rightInputHeading}}"></p></label>
     <div>
       <input class="form-control ngMessageSample" type="{{inputType}}" name="doubleInputRight{{index}}"
       ng-model="modelRight" ng-minlength="{{rightMinLength}}" ng-maxlength="{{rightMaxLength}}" ng-pattern="rightPattern" required>
       <div ng-messages="form['doubleInputRight' + index].$error" ng-show="form.$dirty || form.$submitted" class="ngMessagesClass" ng-messages-multiple>
-        <div ng-message="minlength" class="ngMessageClass"> {{rightInputHeading}} must have at least {{rightMinLength}} characters.</div>
-        <div ng-message="maxlength" class="ngMessageClass"> {{rightInputHeading}} must have at most {{rightMaxLength}} characters.</div>
-        <div ng-message="pattern" class="ngMessageClass"> {{rightInputHeading}} {{rightPatternMessage}}</div>
+        <div ng-message="minlength" class="ngMessageClass">
+          <span translate="{{rightInputHeading}}"></span>&nbsp
+          <span translate="CHARACTERS_MIN_AMOUNT_CONSTRAINT"></span>&nbsp
+          <span translate="{{rightMinLength}}"></span>&nbsp
+          <span translate="CHARACTERS"></span>
+        </div>
+        <div ng-message="maxlength" class="ngMessageClass">
+          <span translate="{{rightInputHeading}}"></span>&nbsp
+          <span translate="CHARACTERS_MAX_AMOUNT_CONSTRAINT"></span>&nbsp
+          <span translate="{{rightMaxLength}}"></span>&nbsp
+          <span translate="CHARACTERS"></span>
+        </div>
+        <div ng-message="pattern" class="ngMessageClass">
+          <span translate="{{rightInputHeading}}"></span>&nbsp
+          <span translate="{{rightPatternMessage}}"></span>
+        </div>
       </div>
     </div>
   </div>

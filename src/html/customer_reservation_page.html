@@ -1,8 +1,8 @@
 <div ng-show="activeReservations.length > 0" class="contentHeader">
-  <h1><b>Active</b> reservations</h1>
+  <p translate="SETTINGS_RESERVATIONS_ACTIVE_TITLE"></p>
 </div>
 <div ng-show="activeReservations.length === 0" class="contentHeader">
-  <h1>You have no <b>active</b> reservations</h1>
+  <p translate="SETTINGS_RESERVATIONS_NO_ACTIVE_TITLE"></p>
 </div>
 <div class="contentTableContainer" ng-show="activeReservations.length > 0">
   <div class="box-shadow">
@@ -46,10 +46,10 @@
 </div>
 </div>
 <div ng-show="finalizedReservations.length > 0" class="contentHeader">
-  <h1><b>Finalized</b> reservations</h1>
+  <p translate="SETTINGS_RESERVATIONS_FINALIZED_TITLE"></p>
 </div>
 <div ng-show="finalizedReservations.length === 0" class="contentHeader">
-  <h1>You have no <b>finalized</b> reservations</h1>
+  <p translate="SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE"></p>
 </div>
 <div class="contentTableContainer" ng-show="finalizedReservations.length > 0">
   <div class="box-shadow">
@@ -60,7 +60,7 @@
           <th st-sort="departureDate"><i class="fa fa-plane" style="font-size:40px;"></i> Departure date</th>
           <th st-sort="destination">Destination</th>
           <th>Details</th>
-          <th>
+          <th>Cancel</th>
           </tr>
         </thead>
         <tbody>

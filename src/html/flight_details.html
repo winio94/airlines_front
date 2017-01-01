@@ -1,9 +1,9 @@
 <div class="contentHeader">
-  <h1>Flight <b>reservation</b> <b>({{from.city}}</b> &rarr; <b>{{to.city}})</b></h1>
+  <p translate="RESERVATION_CREATE_TITLE" translate-values="{fromCity : from.city, toCity : to.city}"></p>
 </div>
 <div class="flightBoxContainer">
   <div class="flightDetailsContainer">
-    <form class="flightDetailsForm" name="flightDetailsForm">
+    <form class="flightDetailsForm" novalidate name="flightDetailsForm">
       <div class="flightDesription box-shadow">
         <ng-heading icon="fa fa-plane" from="{{from.city}}" to="{{to.city}}" arrow="&rarr;"></ng-heading>
         <div class="flightDescriptionContent">
@@ -26,11 +26,11 @@
         <div style="clear:both;"></div>
       </div>
       <div class="flightPassengers box-shadow">
-        <ng-heading icon="fa fa-male" description="Passengers"></ng-heading>
+        <ng-heading icon="fa fa-male" description="PASSENGERS"></ng-heading>
         <div class="flightPassengersContent" ng-repeat="passenger in getPassengers()">
           <ng-double-input-box
-          heading-number="{{$index + 1}}" heading=". Passenger"
-          left-input-heading="First name" right-input-heading="Last name"
+          heading-number="{{$index + 1}}" heading="PASSENGER"
+          left-input-heading="FIRST_NAME" right-input-heading="LAST_NAME"
           model-left=passenger.firstName model-right=passenger.lastName
           left-min-length="2", left-max-length="20"
           right-min-length="2", right-max-length="20"
@@ -38,68 +38,78 @@
         </div>
       </div>
       <div class="flightContact  box-shadow">
-        <ng-heading icon="fa fa-info" description="Contact Information"></ng-heading>
+        <ng-heading icon="fa fa-info" description="CONTACT"></ng-heading>
         <div class="flightContactContent">
-          <ng-double-input-box left-input-heading="Email address" right-input-heading="Phone number"
+          <ng-double-input-box left-input-heading="EMAIL_ADDRESS" right-input-heading="PHONE_NUMBER"
           model-left=reservation.contact.email model-right=reservation.contact.phone
           left-pattern=emailPattern right-pattern=phonePattern inputType="text"
-          left-pattern-message="emailPatternMessage" right-pattern-message="phonePatternMessage"
+          left-pattern-message="WRONG_VALUE_MESSAGE" right-pattern-message="PHONE_PATTERN_MESSAGE"
           form="flightDetailsForm"></ng-double-input-box>
         </div>
       </div>
       <div class="flightLuggage box-shadow">
-        <ng-heading icon="fa fa-suitcase" description="Luggage"></ng-heading>
+        <ng-heading icon="fa fa-suitcase" description="LUGGAGE"></ng-heading>
         <div class="flightLuggageContent">
-          <ng-double-check-box  left-input-heading="Free luggage" right-input-heading="Registered luggage"
-          right-description="First passenger may take one registered lugagge with dimentions 149x119x171 cm (23kg)."
-          left-description="Each passenger may take one carry-on lugagge with dimentions 42x32x25 cm (15kg)."
-          left-label=0.0 label-comment=" zl" right-label=50.00 model=flightLuggage></ng-double-check-box>
+          <ng-double-check-box  left-input-heading="FREE_LUGGAGE" right-input-heading="REGISTERED_LUGGAGE"
+          left-description="FREE_LUGGAGE_DESCRIPTION"
+          right-description="REGISTERED_LUGGAGE_DESCRIPTION"
+          left-label=0.0 label-comment=" zł" right-label=50.00 model=flightLuggage></ng-double-check-box>
         </div>
       </div>
       <div class="flightPayment box-shadow">
-        <ng-heading icon="fa fa-credit-card" description="Payment"></ng-heading>
+        <ng-heading icon="fa fa-credit-card" description="PAYMENT"></ng-heading>
         <div class="flightPaymentContent">
-          <ng-triple-check-box  left-input-heading="{{payments[0].name}}" center-input-heading="{{payments[1].name}}" right-input-heading="{{payments[2].name}}"
-          left-description="{{payments[0].description}}" center-description="{{payments[1].description}}" right-description="{{payments[2].description}}"
-          left-label=payments[0].price center-label=payments[1].price right-label=payments[2].price label-comment=" zl" model=flightPayment></ng-triple-check-box>
+          <ng-triple-check-box
+          left-input-heading="BANK_TRANSFER"
+          center-input-heading="PAY_PAL"
+          right-input-heading="CASH"
+          left-label=0
+          center-label=9
+          right-label=0
+          label-comment=" zł"
+          model=flightPayment></ng-triple-check-box>
         </div>
       </div>
       <div>
       </div>
-      <div class="submit-button-container box-shadow" style="float:left;">
-        <div>
-          <button type="submit" ng-click="flightDetailsForm.$valid && makeReservation(reservation)" class="btn btn-lg btn-default flight-details-button">
-            Make reservation. {{reservation.price}} zl <i class="glyphicon glyphicon-arrow-right"></i>
-          </button>
+      <div class=".col-md-4" style="float:left;">
+        <div class="submit-button-container box-shadow" >
+          <button type="submit"
+          ng-click="flightDetailsForm.$valid && makeReservation(reservation)"
+          class="btn btn-lg btn-default flight-details-button">
+          <span translate="MAKE_RESERVATION"></span> {{reservation.price}} zł
+          <i class="glyphicon glyphicon-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="flightDetailsSummaryContainer">
+    <div class="flightDetailsSummary box-shadow">
+      <div class="flightDetailsBox">
+        <div class="summaryHeading">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <p translate="SUMMARY"></p>
         </div>
       </div>
-    </form>
-    <div class="flightDetailsSummaryContainer">
-      <div class="flightDetailsSummary box-shadow">
-        <div class="flightDetailsBox">
-          <div class="summaryHeading">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Summary
-          </div>
+      <div class="flightDetailsBox">
+        <h4 translate="TICKETS"></h4>
+        {{passengersAmmount}} x <span translate="PASSENGER"></span> :
+        {{passengersAmmount * flight.price}} zł
+      </div>
+      <div class="flightDetailsBox" ng-if="flightLuggage + flightPayment > 0">
+        <h4 translate="ADDITIONAL_CHARGE"></h4>
+        <div ng-if="flightPayment > 0">
+          <span translate="PAYMENT_CHARGE"></span>: {{flightPayment}} zł
         </div>
-        <div class="flightDetailsBox">
-          <h4>Tickets</h4>
-          {{passengersAmmount}} x passengers :
-          {{passengersAmmount * flight.price}} zl
+        <div ng-if="flightLuggage > 0">
+          <span translate="LUGGAGE_CHARGE"></span>: {{flightLuggage}} zł
         </div>
-        <div class="flightDetailsBox" ng-if="flightLuggage + flightPayment > 0">
-          <h4>Additional charge</h4>
-          <div ng-if="flightPayment > 0">
-            Payment charge : {{flightPayment}}
-          </div>
-          <div ng-if="flightLuggage > 0">
-            Luggage charge : {{flightLuggage}}
-          </div>
-        </div>
-        <div class="flightDetailsBox">
-          <h4>Sum</h4>
-          {{reservation.price}}
-        </div>
+      </div>
+      <div class="flightDetailsBox">
+        <h4 translate="PRICE"></h4>
+        {{reservation.price}} zł
       </div>
     </div>
   </div>
+</div>
 </div>

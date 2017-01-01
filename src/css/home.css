@@ -424,7 +424,6 @@ body {
 .submit-button-container {
   margin: 0 auto;
   margin-bottom: 5%;
-  width: 40%;
 }
 
 .flight-details-button {
@@ -517,4 +516,8 @@ ul .dropdown-menu {
   -webkit-box-shadow: 0px 0px 8px 2px #000000;
   -moz-box-shadow: 0px 0px 8px 2px #000000;
   box-shadow: 0px 0px 8px 2px #000000;
+}
+
+.languages {
+  padding-top: 15px;
 }

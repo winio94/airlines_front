@@ -1,25 +1,27 @@
 <div class="contentHeader">
-  <h1>Sign <b>up</b></h1>
+  <p translate="REGISTER_TITLE"></p>
 </div>
 <div class="login_container">
   <div class="login_wrapper box-shadow">
-    <form id="authorize_form" role="form" ng-submit="register(reservation_credentials)">
+    <form name="registerForm" id="authorize_form" role="form" ng-submit="register(reservation_credentials)">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="text"class="form-control" id="email" name="email" ng-model="reservation_credentials.email"/>
+        <input type="text"class="form-control" id="email" name="email" ng-model="reservation_credentials.email" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please Enter email')"/>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" ng-model="reservation_credentials.password"/>
+        <input type="password" class="form-control" id="password" name="password" ng-model="reservation_credentials.password" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please Enter password')" />
       </div>
       <div class="form-group">
         <label for="passwordRetype">Password retype:</label>
-        <input type="password" class="form-control" id="passwordRetype" name="passwordRetype" ng-model="reservation_credentials.passwordRetype"/>
+        <input type="password" class="form-control" id="passwordRetype" name="passwordRetype" ng-model="reservation_credentials.passwordRetype" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please Enter password again')"/>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" ng-click="registerForm.$valid" class="btn btn-primary">Submit</button>
     </form>
     <div class="alert alert-danger" ng-show="error">
-      There was a problem while registration. Please try again.
+      <span translate="REGISTRATION_ERROR"></span>
+      <br/>
+      <span>{{errors}}</span>
     </div>
   </div>
 </div>

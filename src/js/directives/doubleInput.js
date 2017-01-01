@@ -17,8 +17,8 @@ app.directive('ngDoubleInputBox', function() {
       'rightMaxLength': '@?',
       'leftPattern': '=',
       'rightPattern': '=',
-      'leftPatternMessage': '=',
-      'rightPatternMessage': '='
+      'leftPatternMessage': '@?',
+      'rightPatternMessage': '@?'
     }
   }
 });
