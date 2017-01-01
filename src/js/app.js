@@ -9,7 +9,7 @@ var app = angular.module("mainModule", [
 	'ngStorage',
 	'pascalprecht.translate']);
 
-	app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', function($q, $location,$injector){
+	app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', '$rootScope', function($q, $location, $injector, $rootScope){
 		return {
 			request: function (config) {
 				var authService = $injector.get('AuthService');
@@ -25,6 +25,7 @@ var app = angular.module("mainModule", [
 			responseError: function(res) {
 				if(res) {
 					if(res.data.errors) {
+						$rootScope.errors = getErrorMessageFrom(res.data.errors);
 						return $q.reject(res);
 					}
 				}
@@ -35,6 +36,16 @@ var app = angular.module("mainModule", [
 		function getAuthorizationHeader(headers) {
 			return (headers === null || headers === undefined ? null : headers.authorization)
 		};
+
+		function getErrorMessageFrom(errors) {
+			var errorMessage = "";
+			for (var i = 0; i < errors.length; i++) {
+				errorMessage += errors[i].message;
+				errorMessage += "\n";
+			}
+			return errorMessage;
+		};
+
 	}]);
 
 	app.config(function($routeProvider, $httpProvider) {
@@ -109,8 +120,17 @@ var app = angular.module("mainModule", [
 			PAYMENT_CHARGE: "Payment charge",
 			LUGGAGE_CHARGE: "Luggage charge",
 			RESERVATION_CODE: "Reservation code",
-			MAKE_PAYMENT: "Make payment.",
-
+			GO_TO_FLIGHT_SEARCH_PAGE: "Search flight",
+			RESERVATIONS: "Reservations",
+			FLIGHTS: "Flights",
+			LOGOUT: "Log out",
+			LOGIN: "Log in",
+			REGISTER: "Sign up",
+			CUSTOMERS: "Customers",
+			SETTINGS: "Settings",
+			FLIGHT_PREFERENCES: "Flight preferences",
+			ACCOUNT: "Account",
+			REGISTRATION_ERROR: "There was an error with registration.",
 
 			//FLIGHT SEARCH VARIABLES
 			FLIGHT_SEARCH_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
@@ -143,16 +163,15 @@ var app = angular.module("mainModule", [
 
 			//RESERVATION CONFIRMATION VARIABLES
 			RESERVATION_CONFIRMATION_TITLE: "<h1>Reservation confirmation</h1>",
-			// RESERVATION_CONFIRMATION_MESSAGE: "After payemnt approval, we will send a confirmation on {{address}} address",
-			RESERVATION_CONFIRMATION_MESSAGE: "After payemnt approval, we will send a confirmation on <span class='niceSpanFontMedium'>{{address}}</span> address.",
+			RESERVATION_CONFIRMATION_MESSAGE: "Reservation was successfully created. You will get a confirmation with reservation code on <span class='niceSpanFontMedium'>{{address}}</span> address.",
 
 			LOGIN_TITLE: "<h1>Sign <b>in</b></h1>",
 			REGISTER_TITLE: "<h1>Sign <b>up</b></h1>",
 			CUSTOMERS_PAGE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			CUSTOMERS_PAGE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_ACTIVE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_NO_ACTIVE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
+			SETTINGS_RESERVATIONS_ACTIVE_TITLE: "<h1><b>Active</b> reservations</h1>",
+			SETTINGS_RESERVATIONS_NO_ACTIVE_TITLE: "<h1>You have no <b>active</b> reservations</h1>",
+			SETTINGS_RESERVATIONS_FINALIZED_TITLE: "<h1><b>Finalized</b> reservations</h1>",
+			SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE: "<h1>You have no <b>finalized</b> reservations</h1>",
 		});
 
 		$translateProvider.translations('pl', {
@@ -180,7 +199,17 @@ var app = angular.module("mainModule", [
 			PAYMENT_CHARGE: "Opłata za tranzakcje",
 			LUGGAGE_CHARGE: "Opłata za bagaz",
 			RESERVATION_CODE: "Kod rezerwacji",
-			MAKE_PAYMENT: "Dokonaj zapłaty.",
+			GO_TO_FLIGHT_SEARCH_PAGE: "Wyszukaj lot",
+			RESERVATIONS: "Rezerwacje",
+			FLIGHTS: "Loty",
+			LOGOUT: "Wyloguj się",
+			LOGIN: "Zaloguj się",
+			REGISTER: "Zarejestruj się",
+			CUSTOMERS: "Uzytkownicy",
+			SETTINGS: "Ustawienia",
+			FLIGHT_PREFERENCES: "Preferencje lotu",
+			ACCOUNT: "Konto",
+			REGISTRATION_ERROR: "Wystąpił błąd podczas rejestracji.",
 
 			//FLIGHT SEARCH VARIABLES
 			FLIGHT_SEARCH_TITLE: "<h1>Najlepsze <b>loty</b>. Wszyscy przewoźnicy.</h1>",
@@ -214,16 +243,15 @@ var app = angular.module("mainModule", [
 
 			//RESERVATION CONFIRMATION VARIABLES
 			RESERVATION_CONFIRMATION_TITLE: "<h1>Potwierdzenie rezerwacji</h1>",
-			RESERVATION_CONFIRMATION_MESSAGE: "Po dokonaniu zapłaty otrzymasz potwierdzenie na adres <span class='niceSpanFontMedium'>{{address}}</span>.",
-
+			RESERVATION_CONFIRMATION_MESSAGE: "Rezerwacja została pomyślnie utworzona. Otrzymasz potwierdzenie z kodem rezerwacji na adres <span class='niceSpanFontMedium'>{{address}}</span>.",
 
 			LOGIN_TITLE: "<h1><b>Zaloguj</b> się</h1>",
 			REGISTER_TITLE: "<h1><b>Zarejestruj</b> się</h1>",
-			CUSTOMERS_PAGE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			CUSTOMERS_PAGE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_ACTIVE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_NO_ACTIVE_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
-			SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
+			CUSTOMERS_PAGE_TITLE: "<h1>Best <b>flights</b>. All air carriers</h1>",
+			SETTINGS_RESERVATIONS_ACTIVE_TITLE: "<h1><b>Aktywne</b> rezerwacje</h1>",
+			SETTINGS_RESERVATIONS_NO_ACTIVE_TITLE: "<h1>Brak <b>aktywnych</b> rezerwacji</h1>",
+			SETTINGS_RESERVATIONS_FINALIZED_TITLE: "<h1><b>Dokonane</b> rezerwacje</h1>",
+			SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE: "<h1>Brak <b>dokonanych</b> rezerwacji</h1>",
 		});
 
 		// $translateProvider.useSanitizeValueStrategy('escape');
