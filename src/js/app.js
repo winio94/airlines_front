@@ -23,8 +23,15 @@ var app = angular.module("mainModule", [
 			},
 
 			responseError: function(res) {
+				$rootScope.errors = [];
 				if(res) {
-					if(res.data.errors) {
+					if(res.status && res.status === 403) {
+						$location.path("/unathorized");
+					}
+					else if(res.data.message) {
+						$rootScope.errors = getErrorMessageFrom(res.data.message);
+					}
+					else if(res.data.errors) {
 						$rootScope.errors = getErrorMessageFrom(res.data.errors);
 						return $q.reject(res);
 					}
@@ -37,15 +44,18 @@ var app = angular.module("mainModule", [
 			return (headers === null || headers === undefined ? null : headers.authorization)
 		};
 
-		function getErrorMessageFrom(errors) {
+		function getErrorMessageFrom(data) {
 			var errorMessage = "";
-			for (var i = 0; i < errors.length; i++) {
-				errorMessage += errors[i].message;
-				errorMessage += "\n";
+			if(typeof data === 'string') {
+				errorMessage = data;
+			} else {
+				for (var i = 0; i < data.length; i++) {
+					errorMessage += data[i].message;
+					errorMessage += "\n";
+				}
 			}
 			return errorMessage;
 		};
-
 	}]);
 
 	app.config(function($routeProvider, $httpProvider) {
@@ -77,7 +87,7 @@ var app = angular.module("mainModule", [
 			templateUrl : "src/html/reservation_summary.html",
 			controller : "ReservationCtrl"
 		})
-		.when("/customers/:id", {
+		.when("/customers/:id/reservations", {
 			templateUrl: "src/html/customer_reservation_page.html",
 			controller: "CustomerCtrl",
 			resolve: {
@@ -85,6 +95,18 @@ var app = angular.module("mainModule", [
 					return CustomerService.findCustomerByUserId($route.current.params.id);
 				}]
 			}
+		})
+		.when("/customers/:id/account", {
+			templateUrl: "src/html/customer_account_page.html",
+			controller: "CustomerCtrl",
+			resolve: {
+				customer: ['CustomerService', '$route', function(CustomerService, $route) {
+					return CustomerService.findCustomerByUserId($route.current.params.id);
+				}]
+			}
+		})
+		.when("/unathorized", {
+			templateUrl: "src/html/unathorized_page.html"
 		})
 		.otherwise({ redirectTo: '/flights' });
 		$httpProvider.interceptors.push('airlinesRequestInterceptor');
@@ -131,6 +153,20 @@ var app = angular.module("mainModule", [
 			FLIGHT_PREFERENCES: "Flight preferences",
 			ACCOUNT: "Account",
 			REGISTRATION_ERROR: "There was an error with registration.",
+			UNATHORIZED_ERROR: "You have no access to this resource.",
+			SETTINGS_ACCOUNT_TITLE: "Account settings",
+			PASSWORD_CHANGE: "Change passoword",
+			OLD_PASSWORD: "Old password",
+			NEW_PASSWORD: "New password",
+			OLD_PASSWORD_CHECK: "Please enter old passwword",
+			ACCOUNT_DELETE_TITLE: "Account delete",
+			ACCOUNT_DELETE: "Delete Your account",
+			CHANGE_PASSWORD: "Change password",
+			RETYPE_NEW_PASSWORD: "Retype new password",
+			CHANGE_PASSWORD_ERROR: "There was an error with updating password.",
+			ACCOUNT_DELETE_ERROR: "There was an error with deleting account.",
+			LOGOUT_ERROR: "There was a problem with logging out. Please try again.",
+
 
 			//FLIGHT SEARCH VARIABLES
 			FLIGHT_SEARCH_TITLE: "<h1>Best <b>flights</b>. All air carriers.</h1>",
@@ -210,6 +246,20 @@ var app = angular.module("mainModule", [
 			FLIGHT_PREFERENCES: "Preferencje lotu",
 			ACCOUNT: "Konto",
 			REGISTRATION_ERROR: "Wystąpił błąd podczas rejestracji.",
+			UNATHORIZED_ERROR: "Nie masz praw do odczytu tej treści.",
+			SETTINGS_ACCOUNT_TITLE: "Ustawienia konta",
+			PASSWORD_CHANGE: "Zmiana hasła",
+			OLD_PASSWORD: "Stare hasło",
+			NEW_PASSWORD: "Nowe hasło",
+			OLD_PASSWORD_CHECK: "Proszę podać stare hasło",
+			ACCOUNT_DELETE_TITLE: "Usunięcie konta",
+			ACCOUNT_DELETE: "Usuń konto",
+			CHANGE_PASSWORD: "Aktualizuj hasło",
+			RETYPE_NEW_PASSWORD: "Powtorz nowe hasło",
+			CHANGE_PASSWORD_ERROR: "Wystąpił błąd podczas aktualizacji hasła.",
+			ACCOUNT_DELETE_ERROR: "Wystąpił błąd podczas usuwania konta.",
+			LOGOUT_ERROR: "Wystąpił błąd podczas proby wylogowania. Sprobuj ponownie.",
+
 
 			//FLIGHT SEARCH VARIABLES
 			FLIGHT_SEARCH_TITLE: "<h1>Najlepsze <b>loty</b>. Wszyscy przewoźnicy.</h1>",

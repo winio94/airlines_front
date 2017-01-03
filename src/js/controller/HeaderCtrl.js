@@ -46,21 +46,9 @@ app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'Aut
   };
 
   $scope.logout = function() {
-    $http({
-      method: 'POST',
-      url: PathService.getPath() + 'logout'
-    }).then(function() {
-      AuthService.setAuthenticated(false);
-      AuthService.setIsAdmin(false);
-      AuthService.setAuthenticated(false);
-      AuthService.setAuthorizationHeader("");
-      AuthService.setPrincipal({});
-      $rootScope.authenticated = false;
-      $rootScope.isAdmin = false;
-      $location.path("/flights");
+    AuthService.logout().then(function() {
       $scope.error = false;
-
-    }, function(data) {
+    }, function() {
       $scope.error = true;
     });
   };
