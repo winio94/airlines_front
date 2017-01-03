@@ -1,6 +1,6 @@
-app.service('AuthService', ['$http', '$localStorage', function($http, $localStorage){
+app.service('AuthService', ['$http', '$localStorage', 'PathService', '$rootScope', '$location',
+function($http, $localStorage, PathService, $rootScope, $location){
   var o = {
-
     adminAuthority :'ADMIN'
   };
 
@@ -51,6 +51,22 @@ app.service('AuthService', ['$http', '$localStorage', function($http, $localStor
 
   o.getPrincipal = function() {
     return $localStorage.principal;
+  };
+
+  o.logout = function() {
+    return  $http({
+      method: 'POST',
+      url: PathService.getPath() + 'logout'
+    }).then(function() {
+      o.setAuthenticated(false);
+      o.setIsAdmin(false);
+      o.setAuthenticated(false);
+      o.setAuthorizationHeader("");
+      o.setPrincipal({});
+      $rootScope.authenticated = false;
+      $rootScope.isAdmin = false;
+      $location.path("/flights");
+    });
   };
 
   return o;
