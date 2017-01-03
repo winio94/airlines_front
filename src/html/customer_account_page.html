@@ -1,0 +1,44 @@
+<div class="contentHeader">
+  <h1 translate="SETTINGS_ACCOUNT_TITLE"></h1>
+</div>
+<div class="col-md-4 col-md-offset-4">
+  <div class="contentHeader">
+    <h3 translate="PASSWORD_CHANGE"></h3>
+  </div>
+  <form>
+    <div class="form-group">
+      <input type="password" class="form-control" ng-model="account.oldPassword" placeholder="{{'OLD_PASSWORD' | translate}}"
+      required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter old password')">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" ng-model="account.newPassword" placeholder="{{'NEW_PASSWORD' | translate}}"
+      required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter new password')">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" ng-model="account.newPasswordRetype" placeholder="{{'RETYPE_NEW_PASSWORD' | translate}}"
+      required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter new password')">
+    </div>
+    <div style="text-align:center;">
+      <button type="submit" class="btn btn-primary" translate="CHANGE_PASSWORD" ng-click="updatePassword(account)"></button>
+    </div>
+  </form>
+  <div class="alert alert-danger" ng-show="error">
+    <span translate="CHANGE_PASSWORD_ERROR"></span>
+    <br/>
+    <span>{{errors}}</span>
+  </div>
+  <p></p>
+  <div class="contentHeader">
+    <h3 translate="ACCOUNT_DELETE_TITLE" style="color:red;"></h3>
+  </div>
+  <form>
+    <div style="text-align:center;">
+      <button type="submit" class="btn btn-danger" translate="ACCOUNT_DELETE" ng-click="removeAccount()"></button>
+    </div>
+  </form>
+  <div class="alert alert-danger" ng-show="error">
+    <span translate="REGISTRATION_ERROR"></span>
+    <br/>
+    <span>{{errors}}</span>
+  </div>
+</div>
