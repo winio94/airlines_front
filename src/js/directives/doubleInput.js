@@ -1,4 +1,4 @@
-app.directive('ngDoubleInputBox', function() {
+app.directive('ngDoubleInputBox', function () {
   return {
     templateUrl: '/src/html/doubleInput.html',
     scope: {
@@ -6,13 +6,13 @@ app.directive('ngDoubleInputBox', function() {
       'leftInputHeading': '@?',
       'rightInputHeading': '@?',
       'headingNumber': '@?',
-      'modelLeft':'=',
-      'modelRight':'=',
-      'inputType' : '@?',
+      'modelLeft': '=',
+      'modelRight': '=',
+      'inputType': '@?',
       'form': '=',
-      'index' : '@?',
-      'leftMinLength' : '@?',
-      'rightMinLength' : '@?',
+      'index': '@?',
+      'leftMinLength': '@?',
+      'rightMinLength': '@?',
       'leftMaxLength': '@?',
       'rightMaxLength': '@?',
       'leftPattern': '=',

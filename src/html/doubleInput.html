@@ -4,8 +4,10 @@
     <label><p translate="{{leftInputHeading}}"></p></label>
     <div>
       <input class="form-control ngMessageSample" type="{{inputType}}" name="doubleInputLeft{{index}}"
-      ng-model="modelLeft" ng-minlength="{{leftMinLength}}" ng-maxlength="{{leftMaxLength}}" ng-pattern="leftPattern" required>
-      <div ng-messages="form['doubleInputLeft' + index].$error" ng-show="form.$dirty || form.$submitted" class="ngMessagesClass" ng-messages-multiple>
+             ng-model="modelLeft" ng-minlength="{{leftMinLength}}" ng-maxlength="{{leftMaxLength}}"
+             ng-pattern="leftPattern" required>
+      <div ng-messages="form['doubleInputLeft' + index].$error" ng-show="form.$dirty || form.$submitted"
+           class="ngMessagesClass" ng-messages-multiple>
         <div ng-message="minlength" class="ngMessageClass">
           <span translate="{{leftInputHeading}}"></span>&nbsp
           <span translate="CHARACTERS_MIN_AMOUNT_CONSTRAINT"></span>&nbsp
@@ -29,8 +31,10 @@
     <label><p translate="{{rightInputHeading}}"></p></label>
     <div>
       <input class="form-control ngMessageSample" type="{{inputType}}" name="doubleInputRight{{index}}"
-      ng-model="modelRight" ng-minlength="{{rightMinLength}}" ng-maxlength="{{rightMaxLength}}" ng-pattern="rightPattern" required>
-      <div ng-messages="form['doubleInputRight' + index].$error" ng-show="form.$dirty || form.$submitted" class="ngMessagesClass" ng-messages-multiple>
+             ng-model="modelRight" ng-minlength="{{rightMinLength}}" ng-maxlength="{{rightMaxLength}}"
+             ng-pattern="rightPattern" required>
+      <div ng-messages="form['doubleInputRight' + index].$error" ng-show="form.$dirty || form.$submitted"
+           class="ngMessagesClass" ng-messages-multiple>
         <div ng-message="minlength" class="ngMessageClass">
           <span translate="{{rightInputHeading}}"></span>&nbsp
           <span translate="CHARACTERS_MIN_AMOUNT_CONSTRAINT"></span>&nbsp

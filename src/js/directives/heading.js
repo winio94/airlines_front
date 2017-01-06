@@ -2,12 +2,12 @@ app.directive('ngHeading', function () {
   return {
     restrict: 'E',
     scope: {
-      'icon' : '@?',
-      'description' : '@?',
+      'icon': '@?',
+      'description': '@?',
       'from': '@?',
-      'to':'@?',
+      'to': '@?',
       'arrow': '@?',
-      'headingAlign' : '@?'
+      'headingAlign': '@?'
     },
     templateUrl: '/src/html/heading.html'
   };
