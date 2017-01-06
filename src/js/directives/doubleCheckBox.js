@@ -1,4 +1,4 @@
-app.directive('ngDoubleCheckBox', function() {
+app.directive('ngDoubleCheckBox', function () {
   return {
     restrict: 'E',
     scope: {
@@ -6,12 +6,12 @@ app.directive('ngDoubleCheckBox', function() {
       'leftInputHeading': '@?',
       'rightInputHeading': '@?',
       'headingNumber': '@?',
-      'leftDescription' : '@?',
-      'rightDescription' : '@?',
-      'leftLabel' : '=',
-      'rightLabel' : '=',
-      'labelComment' : '@?',
-      'model' : '='
+      'leftDescription': '@?',
+      'rightDescription': '@?',
+      'leftLabel': '=',
+      'rightLabel': '=',
+      'labelComment': '@?',
+      'model': '='
     },
     templateUrl: '/src/html/doubleCheckBox.html'
   }

@@ -1,40 +1,42 @@
-app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'AuthService', 'PathService', function($scope, $rootScope, $http, $location, AuthService, PathService) {
+app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'AuthService', 'PathService', function ($scope, $rootScope, $http, $location, AuthService, PathService) {
   $rootScope.authenticated = AuthService.isAuthenticated();
   $rootScope.isAdmin = AuthService.isAdmin();
   $rootScope.principal = AuthService.getPrincipal();
-  var authenticate = function(credentials, callback) {
-    $rootScope.headers = credentials ? {authorization : "Basic " + btoa(credentials.email + ":" + credentials.password)} : {};
-    $http.get(PathService.getPath() + 'user', {headers : $rootScope.headers})
-    .success(function(data) {
-      if (data.name) {
-        AuthService.setPrincipal(data.principal);
-        $rootScope.principal = AuthService.getPrincipal();
-        AuthService.setAuthenticated(true);
-        AuthService.setAuthorizationHeader($rootScope.headers);
-        $rootScope.authenticated = true;
-        $scope.checkIfAdmin(data.authorities);
-      } else {
-        AuthService.setPrincipal({});
-        $rootScope.principal = {};
-        AuthService.setIsAdmin(false);
-        AuthService.setAuthenticated(false);
-        $rootScope.authenticated = false;
-      }
-      callback && callback();
-    }).error(function() {
+  var authenticate = function (credentials, callback) {
+    $rootScope.headers = credentials ? {authorization: "Basic " + btoa(credentials.email + ":" + credentials.password)} : {};
+    $http.get(PathService.getPath() + 'user', {headers: $rootScope.headers})
+      .success(function (data) {
+        if (data.name) {
+          AuthService.setPrincipal(data.principal);
+          $rootScope.principal = AuthService.getPrincipal();
+          AuthService.setAuthenticated(true);
+          AuthService.setAuthorizationHeader($rootScope.headers);
+          $rootScope.authenticated = true;
+          $scope.checkIfAdmin(data.authorities);
+        } else {
+          AuthService.setPrincipal({});
+          $rootScope.principal = {};
+          AuthService.setIsAdmin(false);
+          AuthService.setAuthenticated(false);
+          $rootScope.authenticated = false;
+        }
+        callback && callback();
+      }).error(function () {
     });
   };
 
-  if(AuthService.isAuthenticated() === false) {
+  if (AuthService.isAuthenticated() === false) {
     authenticate();
-  };
+  }
+  ;
 
-  if(!$rootScope.credentials) {
+  if (!$rootScope.credentials) {
     $rootScope.credentials = {};
-  };
+  }
+  ;
 
-  $scope.login = function() {
-    authenticate($rootScope.credentials, function() {
+  $scope.login = function () {
+    authenticate($rootScope.credentials, function () {
       if ($rootScope.authenticated) {
         AuthService.setAuthorizationHeader($rootScope.headers);
         $location.path("/flights");
@@ -45,31 +47,31 @@ app.controller("HeaderCtrl", ['$scope', '$rootScope', '$http', '$location', 'Aut
     });
   };
 
-  $scope.logout = function() {
-    AuthService.logout().then(function() {
+  $scope.logout = function () {
+    AuthService.logout().then(function () {
       $scope.error = false;
-    }, function() {
+    }, function () {
       $scope.error = true;
     });
   };
 
-  $scope.register = function(reservation_credentials) {
+  $scope.register = function (reservation_credentials) {
     $http({
       method: 'POST',
       url: PathService.getPath() + 'users',
       data: {
         "email": reservation_credentials.email,
-        "password" : reservation_credentials.password
+        "password": reservation_credentials.password
       }
-    }).then(function(response) {
+    }).then(function (response) {
       $location.path("/login")
-    }, function(data) {
+    }, function (data) {
       $scope.error = true;
     });
   };
 
-  $scope.checkIfAdmin = function(authorities) {
-    if(AuthService.checkIfAdmin(authorities)) {
+  $scope.checkIfAdmin = function (authorities) {
+    if (AuthService.checkIfAdmin(authorities)) {
       $rootScope.isAdmin = true;
       AuthService.setIsAdmin(true);
     } else {

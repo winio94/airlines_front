@@ -1,19 +1,28 @@
-<div class="header"  ng-controller="HeaderCtrl" >
-  <nav style="padding-bottom:0px; margin-bottom:0px;"class="navbar navbar-default">
+<div class="header" ng-controller="HeaderCtrl">
+  <nav style="padding-bottom:0px; margin-bottom:0px;" class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="#/flights">Airlines Reservation System</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/flights"><i class="fa fa-plane" style="font-size:40px;"></i> <span translate="FLIGHTS"></span></a></li>
-        <li ng-show="isAdmin"><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> <span translate="CUSTOMERS"></span></a></li>
-        <li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out" style="font-size:40px;"></i> <span translate="LOGOUT"></span></a></li>
-        <li ng-hide="authenticated"><a class="auth" href="#/login"><i class="fa fa-sign-in" style="font-size:40px;"></i> <span translate="LOGIN"></span></a></li>
-        <li ng-hide="authenticated"><a class="auth" href="#/register"><i class="fa fa-user-plus" style="font-size:40px;"></i> <span translate="REGISTER"></span></a></li>
+        <li><a href="#/flights"><i class="fa fa-plane" style="font-size:40px;"></i> <span
+          translate="FLIGHTS"></span></a></li>
+        <li ng-show="isAdmin"><a href="#customers"><i class="fa fa-male" style="font-size:40px;"></i> <span
+          translate="CUSTOMERS"></span></a></li>
+        <li ng-show="authenticated"><a class="auth" href="" ng-click="logout()"><i class="fa fa-sign-out"
+                                                                                   style="font-size:40px;"></i> <span
+          translate="LOGOUT"></span></a></li>
+        <li ng-hide="authenticated"><a class="auth" href="#/login"><i class="fa fa-sign-in" style="font-size:40px;"></i>
+          <span translate="LOGIN"></span></a></li>
+        <li ng-hide="authenticated"><a class="auth" href="#/register"><i class="fa fa-user-plus"
+                                                                         style="font-size:40px;"></i> <span
+          translate="REGISTER"></span></a></li>
         <li ng-show="authenticated">
-          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" style="font-size:40px;"></i> <span translate="SETTINGS"></span> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" style="font-size:40px;"></i> <span
+            translate="SETTINGS"></span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a style="padding:5px;" ng-href="#/customers/{{principal.id}}/reservations" translate="RESERVATIONS"></a></li>
+            <li><a style="padding:5px;" ng-href="#/customers/{{principal.id}}/reservations"
+                   translate="RESERVATIONS"></a></li>
             <li><a style="padding:5px;" ng-href="#/customers/{{principal.id}}/account" translate="ACCOUNT"></a></li>
           </ul>
         </li>
@@ -28,5 +37,6 @@
       </ul>
     </div>
   </nav>
-  <div style="margin:0 auto; text-align:center;" class="alert alert-danger" ng-show="error"><p translate="LOGOUT_ERROR"></p></div>
+  <div style="margin:0 auto; text-align:center;" class="alert alert-danger" ng-show="error"><p
+    translate="LOGOUT_ERROR"></p></div>
 </div>

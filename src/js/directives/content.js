@@ -1,4 +1,4 @@
-app.directive('ngContent', function() {
+app.directive('ngContent', function () {
   return {
     templateUrl: '/src/html/content.html'
   };

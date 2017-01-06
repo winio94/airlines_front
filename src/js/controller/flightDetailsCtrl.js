@@ -1,4 +1,4 @@
-app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUtil', 'ReservationService', function($scope, Flight, PathService, DateUtil, ReservationService) {
+app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUtil', 'ReservationService', function ($scope, Flight, PathService, DateUtil, ReservationService) {
 
   //-------------------------------VARIABLES-------------------------------//
   $scope.flight = Flight.getChoosenFlight();
@@ -21,48 +21,48 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
   $scope.phonePatternMessage = " must have directional at the beginning eg '+48'."
   $scope.reservation = {
     "price": $scope.passengersAmmount * $scope.flight.price,
-    "passengers" : $scope.passengers,
-    "contact" : {},
-    "luggage" : null,
-    "payment" : null,
-    "flight" : $scope.flight
+    "passengers": $scope.passengers,
+    "contact": {},
+    "luggage": null,
+    "payment": null,
+    "flight": $scope.flight
   };
   $scope.payments = [
     {
-      "name" : "Bank transfer",
-      "price" : 0,
+      "name": "Bank transfer",
+      "price": 0,
       "description": "Tranfer money into bank account."
     },
     {
-      "name" : "Pay Pal",
-      "price" : 9,
+      "name": "Pay Pal",
+      "price": 9,
       "description": "For PayPal account owners."
     },
     {
-      "name" : "Cash",
-      "price" : 0,
+      "name": "Cash",
+      "price": 0,
       "description": "Deposit money."
     }
   ];
-  
-  PathService.retrieveDataFrom($scope.flight._links.from.href).then(function(result) {
+
+  PathService.retrieveDataFrom($scope.flight._links.from.href).then(function (result) {
     $scope.from = result;
   });
 
-  PathService.retrieveDataFrom($scope.flight._links.to.href).then(function(result) {
+  PathService.retrieveDataFrom($scope.flight._links.to.href).then(function (result) {
     $scope.to = result;
   });
 
   //-------------------------------FUNCTIONS-------------------------------//
-  $scope.countReservationPrice = function() {
+  $scope.countReservationPrice = function () {
     $scope.reservation = $scope.passengersAmmount * $scope.flight.price + $scope.flightPayment + $scope.flightLuggage;
   };
 
-  $scope.getPassengers = function() {
+  $scope.getPassengers = function () {
     return $scope.passengers;
   };
 
-  $scope.makeReservation = function() {
+  $scope.makeReservation = function () {
     $scope.reservation.passengers = $scope.passengers;
     $scope.reservation.luggage = $scope.flightLuggage;
     $scope.reservation.payment = $scope.flightPayment;
@@ -70,13 +70,13 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
     ReservationService.makeReservation($scope.reservation);
   };
 
-  $scope.initializeEmptyPassengers = function() {
+  $scope.initializeEmptyPassengers = function () {
     $scope.passengers = [];
-    for(i=0; i< $scope.passengersAmmount; i++) {
+    for (i = 0; i < $scope.passengersAmmount; i++) {
       $scope.passengers.push(
         {}
       );
-    };
+    }
   };
 
   function addFlightInfo() {
@@ -84,17 +84,17 @@ app.controller('FlightDetailsCtrl', ['$scope', 'Flight', 'PathService', 'DateUti
       from: $scope.from,
       to: $scope.to,
       date: $scope.departureDayMonthYear
-    }
+    };
     $scope.reservation.flightInfo = flightInfo;
   }
 
   //-------------------------------WATCHERS-------------------------------//
-  $scope.$watch('flightPayment', function(newValue, oldValue) {
+  $scope.$watch('flightPayment', function (newValue, oldValue) {
     var result = newValue - oldValue;
     $scope.reservation.price += result;
   });
 
-  $scope.$watch('flightLuggage', function(newValue, oldValue) {
+  $scope.$watch('flightLuggage', function (newValue, oldValue) {
     var result = newValue - oldValue;
     $scope.reservation.price += result;
   });
