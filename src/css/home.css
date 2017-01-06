@@ -1,7 +1,7 @@
 * {
-  margin:0;
-  padding:0;
-  border:0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 a {
@@ -33,7 +33,7 @@ body {
   color: white;
 }
 
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav > li > a {
   color: white;
 }
 
@@ -41,11 +41,11 @@ body {
   color: #AEDEE7;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav > li > a:hover {
   color: #AEDEE7;
 }
 
-.navbar-default .navbar-nav>li>a:focus {
+.navbar-default .navbar-nav > li > a:focus {
   color: #AEDEE7;
 }
 
@@ -72,10 +72,10 @@ body {
   color: #372f45;
   margin: 0 auto;
   text-align: center;
-  text-shadow: 1px 1px  #372f45;
+  text-shadow: 1px 1px #372f45;
 }
 
-.login_container{
+.login_container {
   border-radius: 5px;
   color: white;
   width: 20%;
@@ -119,13 +119,13 @@ body {
 }
 
 .flightType li {
-  margin : 0 auto !important;
+  margin: 0 auto !important;
   display: inline;
   padding-right: 20px;
 }
 
 .form-group i {
-  font-size:20px;
+  font-size: 20px;
 }
 
 .flightRoute .form-group {
@@ -133,7 +133,7 @@ body {
   width: 46.5%;
 }
 
-.flightRoute  .form-group.flightSwapContainer {
+.flightRoute .form-group.flightSwapContainer {
   text-align: center;
   width: 5%;
 }
@@ -153,6 +153,7 @@ body {
   width: 46.5%;
   margin-left: 5.5%;
 }
+
 .form_search_part {
   float: left;
   width: 85%;
@@ -243,7 +244,7 @@ body {
 
 .contentTableContainer {
   background: white;
-  margin:0 auto;
+  margin: 0 auto;
   width: 60%;
   border-radius: 5px;
 }
@@ -252,7 +253,8 @@ body {
   color: white;
   background-color: #372f45;
 }
-.contentTableContainer th :hover{
+
+.contentTableContainer th :hover {
   color: #AEDEE7;
 }
 
@@ -279,7 +281,7 @@ body {
 }
 
 .headingIcon {
-  width:6%;
+  width: 6%;
   margin: 0 auto;
   text-align: center;
   float: left;
@@ -289,7 +291,7 @@ body {
   padding-left: 3%;
   font-size: 25px;
   float: left;
-  width:90%;
+  width: 90%;
 }
 
 .heading-content span {
@@ -306,7 +308,7 @@ body {
 }
 
 .headingIcon i {
-  font-size:40px;
+  font-size: 40px;
 }
 
 .flightDesription {
@@ -341,7 +343,7 @@ body {
   text-align: center;
 }
 
-.flightDescriptionContent > *{
+.flightDescriptionContent > * {
   padding: 1%;
 }
 
@@ -361,7 +363,7 @@ body {
 .mediumBolderDark {
   font-size: 18px;
   font-weight: bold;
-  color:#484154;
+  color: #484154;
 }
 
 .smallBolderDark {
@@ -377,7 +379,7 @@ body {
   padding-left: 10%;
 }
 
-.checkBoxContainer :hover{
+.checkBoxContainer :hover {
   background-color: #AEDEE7;
 }
 
@@ -407,10 +409,10 @@ body {
 }
 
 .big {
-  display:block;
-  width:100%;
-  height:100%;
-  cursor:pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .box-shadow {
@@ -427,8 +429,8 @@ body {
 }
 
 .flight-details-button {
-  font-size:25px;
-  color:white;
+  font-size: 25px;
+  color: white;
   background-color: #372f45;
   white-space: normal;
 }
@@ -497,7 +499,7 @@ body {
   background-color: #372f45;
 }
 
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
   color: white;
   background-color: #372f45;
 }
