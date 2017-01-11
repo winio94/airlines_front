@@ -1,6 +1,6 @@
 //noinspection JSUnresolvedFunction
-app.controller('CustomerCtrl', ['customerData', '$scope', '$http', 'ReservationService', '$route', '$routeParams', 'PathService', 'AuthService', '$location',
-  function (customerData, $scope, $http, ReservationService, $route, $routeParams, PathService, AuthService, $location) {
+app.controller('CustomerCtrl', ['customerData', '$scope', '$http', 'ReservationService', '$route', '$routeParams', 'PathService', 'AuthService',
+  function (customerData, $scope, $http, ReservationService, $route, $routeParams, PathService, AuthService) {
     $scope.customer = customerData.customer;
     $scope.allReservations = customerData.allReservations._embedded.reservations;
     $scope.activeReservations = $scope.allReservations.filter(onlyActiveFilter);
