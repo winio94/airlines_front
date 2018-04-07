@@ -1,7 +1,7 @@
 app.directive('ngDoubleInputBox', function () {
   return {
     restrict: 'EA',
-    templateUrl: '../../html/doubleInput.html',
+    templateUrl: 'src/html/doubleInput.html',
     scope: {
       'heading': '@?',
       'leftInputHeading': '@?',
