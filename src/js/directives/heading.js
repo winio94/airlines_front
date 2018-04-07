@@ -9,6 +9,6 @@ app.directive('ngHeading', function () {
       'arrow': '@?',
       'headingAlign': '@?'
     },
-    templateUrl: '/src/html/heading.html'
+    templateUrl: 'html/heading.html'
   };
 });

@@ -15,6 +15,6 @@ app.directive('ngTripleCheckBox', function () {
       'labelComment': '@?',
       'model': '='
     },
-    templateUrl: '/src/html/tripleCheckBox.html'
+    templateUrl: 'html/tripleCheckBox.html'
   }
 });

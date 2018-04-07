@@ -1,5 +1,5 @@
 app.directive('ngContent', function () {
   return {
-    templateUrl: '/src/html/content.html'
+    templateUrl: 'html/content.html'
   };
 });
