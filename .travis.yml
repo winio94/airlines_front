@@ -1,0 +1,16 @@
+script:
+  - rake
+  branches:
+    only:
+      - master
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $key
+  keep-history: true
+  on:
+    branch: master
+env:
+  matrix:
+    secure: IyY13DsC0aJOhLMaiTnAItvDQSBKP5u0XBbC0FSx22G1qlifcPfVSEasWaq0hM16GHNKe4CNf7d8vmOlzWo1iMAg7xhIb/+csXkQKJPl4pmLNEeGWriK2qbLrThcce2IzQhykSp7Sj7Nrx/L1DvqU4x0GrMDRAubqiiLkwZZPxUuJCtyNYci+gKT5j9Iof/PrhP8jmwQdpL3cFg21x48aFjVgCr2l98lCszbbzKOFejIb8GkRAaU4fnsan4qC5BJlTyCnSpkYe59FCmZsBr3nTKfa555uXsQZ7GwREcl/ROV7FpQhYOAm4p+wasP3CwCn6WnMoQCsiRZGJ0wvwega4Dtd5Qh2mqaAtdqL+7iy8Coc9f1F7okj04rjkwfIP7arf8DVsnfsIHElaTa+Hp086W8+kIZZ6L6WELhBG5LsqaDIUyx7hfYDjlPtIiKSZ1+rehcb0WX7CfCEznY0phNXv1LpUqH0moxWQqohfsuhEH1PHpWjg+PBDYVDBkrAOBcoBWtgVonI5ql2U1M+8qPid3x825Ofo/VzpP7alhZF2vjD/oZ9QtBesIwr+6afdvpwhiscX82KfAqX/M0hnH1MwCYdsGkxIG8z4OBjYQBwymgso/D9DJuugqAiVItceiLNZiMqyivse3H1Ho8BoE+ir2zW7zI9+zrgsjs9yykVfA=
+fqdn: winio94-airlines
