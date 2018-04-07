@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
-  "scripts": {
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/winio94/airlines_front.git"
@@ -14,5 +12,5 @@
   "bugs": {
     "url": "https://github.com/winio94/airlines_front/issues"
   },
-  "homepage": "https://github.com/winio94/airlines_front#readme"
+  "homepage": "https://winio94.github.io/airlines_front/"
 }
