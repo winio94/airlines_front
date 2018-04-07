@@ -325,7 +325,7 @@ app.config(function ($routeProvider, $httpProvider) {
     SETTINGS_RESERVATIONS_NO_FINALIZED_TITLE: "<h1>Brak <b>dokonanych</b> rezerwacji</h1>",
   });
 
-  // $translateProvider.useSanitizeValueStrategy('escape');
+  $translateProvider.useSanitizeValueStrategy('escape');
   $translateProvider.preferredLanguage('pl');
 });
 
