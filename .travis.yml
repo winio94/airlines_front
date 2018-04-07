@@ -6,6 +6,7 @@ cache:
   - node_modules
 script:
   - npm test
+local_dir: src
 deploy:
   provider: pages
   skip_cleanup: true
