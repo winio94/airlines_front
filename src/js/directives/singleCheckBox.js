@@ -8,6 +8,6 @@ app.directive('ngSingleCheckBox', function () {
       'inputComment': '@?',
       'model': '='
     },
-    templateUrl: 'html/singleCheckBox.html'
+    templateUrl: 'src/html/singleCheckBox.html'
   }
 });

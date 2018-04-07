@@ -1,5 +1,5 @@
 app.directive('ngFooter', function () {
   return {
-    templateUrl: 'html/footer.html'
+    templateUrl: 'src/html/footer.html'
   };
 });
