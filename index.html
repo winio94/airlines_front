@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="mainModule">
 <head>
-  <!--<base href="/airlines_front/" />-->
+  <base href="/airlines_front/" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,9 +60,7 @@
 <body>
 <div class="wrapper">
   <div ng-header></div>
-  <div id="content">
-    <div ng-view></div>
-  </div>
+  <div ng-content></div>
 </div>
 <div class="footer">
   <footer class="footer-distributed">
