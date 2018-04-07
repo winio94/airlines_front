@@ -1,0 +1,19 @@
+{
+  "name": "airlines_front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winio94/airlines_front.git"
+  },
+  "author": "winio94",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winio94/airlines_front/issues"
+  },
+  "homepage": "https://github.com/winio94/airlines_front#readme"
+}
