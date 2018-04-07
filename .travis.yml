@@ -1,5 +1,6 @@
-script:
-  - rake
+language: node_js
+node_js:
+  - 8.11.1
   branches:
     only:
       - master
