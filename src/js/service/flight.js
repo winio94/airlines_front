@@ -1,4 +1,4 @@
-app.factory('Flight', function ($localStorage) {
+app.factory('Flight', ['$localStorage', function ($localStorage) {
   var o = {};
 
   o.setFlights = function (_flights) {
@@ -58,4 +58,4 @@ app.factory('Flight', function ($localStorage) {
   };
 
   return o;
-});
+}]);
