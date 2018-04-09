@@ -77,35 +77,35 @@ app.factory("customerInitialDataService", ['CustomerService', '$route', 'PathSer
 
 app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
   $routeProvider.when("/flights", {
-    templateUrl: "../flights.html",
+    templateUrl: "flights.html",
     controller: "FlightCtrl"
   })
                 .when("/customers", {
-                  templateUrl: "../customers.html",
+                  templateUrl: "customers.html",
                   controller: "CustomersCtrl"
                 })
                 .when("/login", {
-                  templateUrl: "../login.html",
+                  templateUrl: "login.html",
                   controller: "HeaderCtrl"
                 })
                 .when("/register", {
-                  templateUrl: "../register.html",
+                  templateUrl: "register.html",
                   controller: "HeaderCtrl"
                 })
                 .when("/flight_choose", {
-                  templateUrl: "../flight_choose.html",
+                  templateUrl: "flight_choose.html",
                   controller: "FlightChooseCtrl"
                 })
                 .when("/flight_details", {
-                  templateUrl: "../flight_details.html",
+                  templateUrl: "flight_details.html",
                   controller: "FlightDetailsCtrl"
                 })
                 .when("/reservation_summary", {
-                  templateUrl: "../reservation_summary.html",
+                  templateUrl: "reservation_summary.html",
                   controller: "ReservationCtrl"
                 })
                 .when("/customers/:id/reservations", {
-                  templateUrl: "../customer_reservation_page.html",
+                  templateUrl: "customer_reservation_page.html",
                   controller: "CustomerCtrl",
                   resolve: {
                     customerData: function (customerInitialDataService) {
@@ -114,7 +114,7 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
                   }
                 })
                 .when("/customers/:id/account", {
-                  templateUrl: "../customer_account_page.html",
+                  templateUrl: "customer_account_page.html",
                   controller: "CustomerCtrl",
                   resolve: {
                     customerData: function (customerInitialDataService) {
@@ -123,7 +123,7 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
                   }
                 })
                 .when("/unathorized", {
-                  templateUrl: "../unathorized_page.html"
+                  templateUrl: "unathorized_page.html"
                 })
                 .otherwise({redirectTo: '/flights'});
   $httpProvider.interceptors.push('airlinesRequestInterceptor');
