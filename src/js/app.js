@@ -42,7 +42,7 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', '$roo
 
   function getAuthorizationHeader(headers) {
     return (headers === null || headers === undefined ? null : headers.authorization)
-  };
+  }
 
   function getErrorMessageFrom(data) {
     var errorMessage = "";
@@ -55,7 +55,7 @@ app.factory('airlinesRequestInterceptor', ['$q', '$location', '$injector', '$roo
       }
     }
     return errorMessage;
-  };
+  }
 }]);
 
 app.factory("customerInitialDataService", ['CustomerService', '$route', 'PathService', '$q', function (CustomerService, $route, PathService, $q) {
@@ -74,59 +74,60 @@ app.factory("customerInitialDataService", ['CustomerService', '$route', 'PathSer
   }
 }]);
 
-app.config(function ($routeProvider, $httpProvider) {
+
+app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
   $routeProvider.when("/flights", {
-    templateUrl: "src/html/flights.html",
+    templateUrl: "../flights.html",
     controller: "FlightCtrl"
   })
-    .when("/customers", {
-      templateUrl: "src/html/customers.html",
-      controller: "CustomersCtrl"
-    })
-    .when("/login", {
-      templateUrl: "src/html/login.html",
-      controller: "HeaderCtrl"
-    })
-    .when("/register", {
-      templateUrl: "src/html/register.html",
-      controller: "HeaderCtrl"
-    })
-    .when("/flight_choose", {
-      templateUrl: "src/html/flight_choose.html",
-      controller: "FlightChooseCtrl"
-    })
-    .when("/flight_details", {
-      templateUrl: "src/html/flight_details.html",
-      controller: "FlightDetailsCtrl"
-    })
-    .when("/reservation_summary", {
-      templateUrl: "src/html/reservation_summary.html",
-      controller: "ReservationCtrl"
-    })
-    .when("/customers/:id/reservations", {
-      templateUrl: "src/html/customer_reservation_page.html",
-      controller: "CustomerCtrl",
-      resolve: {
-        customerData: function (customerInitialDataService) {
-          return customerInitialDataService();
-        }
-      }
-    })
-    .when("/customers/:id/account", {
-      templateUrl: "src/html/customer_account_page.html",
-      controller: "CustomerCtrl",
-      resolve: {
-        customerData: function (customerInitialDataService) {
-          return customerInitialDataService();
-        }
-      }
-    })
-    .when("/unathorized", {
-      templateUrl: "src/html/unathorized_page.html"
-    })
-    .otherwise({redirectTo: '/flights'});
+                .when("/customers", {
+                  templateUrl: "../customers.html",
+                  controller: "CustomersCtrl"
+                })
+                .when("/login", {
+                  templateUrl: "../login.html",
+                  controller: "HeaderCtrl"
+                })
+                .when("/register", {
+                  templateUrl: "../register.html",
+                  controller: "HeaderCtrl"
+                })
+                .when("/flight_choose", {
+                  templateUrl: "../flight_choose.html",
+                  controller: "FlightChooseCtrl"
+                })
+                .when("/flight_details", {
+                  templateUrl: "../flight_details.html",
+                  controller: "FlightDetailsCtrl"
+                })
+                .when("/reservation_summary", {
+                  templateUrl: "../reservation_summary.html",
+                  controller: "ReservationCtrl"
+                })
+                .when("/customers/:id/reservations", {
+                  templateUrl: "../customer_reservation_page.html",
+                  controller: "CustomerCtrl",
+                  resolve: {
+                    customerData: function (customerInitialDataService) {
+                      return customerInitialDataService();
+                    }
+                  }
+                })
+                .when("/customers/:id/account", {
+                  templateUrl: "../customer_account_page.html",
+                  controller: "CustomerCtrl",
+                  resolve: {
+                    customerData: function (customerInitialDataService) {
+                      return customerInitialDataService();
+                    }
+                  }
+                })
+                .when("/unathorized", {
+                  templateUrl: "../unathorized_page.html"
+                })
+                .otherwise({redirectTo: '/flights'});
   $httpProvider.interceptors.push('airlinesRequestInterceptor');
-}).config(function ($translateProvider) {
+}]).config(['$translateProvider', function ($translateProvider) {
   $translateProvider.fallbackLanguage('pl');
   $translateProvider.registerAvailableLanguageKeys(['en', 'pl'], {
     'en_*': 'en',
@@ -327,7 +328,7 @@ app.config(function ($routeProvider, $httpProvider) {
 
   $translateProvider.useSanitizeValueStrategy('escape');
   $translateProvider.preferredLanguage('pl');
-});
+}]);
 
 // for nested ng-view working properly
 app.run(['$route', function ($route) {

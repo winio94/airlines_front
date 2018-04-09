@@ -12,16 +12,15 @@ app.service('DateUtil', [function () {
 
   o.getMinutes = function (date) {
     return date.getMinutes();
-  }
+  };
 
   o.getDayMonthYear = function (date) {
     var day = date.getDay();
-    var dayInWeek = date.getDay();
     var month = o.monthShortNames[date.getMonth()];
     var year = date.getUTCFullYear();
     var result = day + " " + month + " " + year + " (" + o.dayShortNames[day] + ")";
     return result;
-  }
+  };
 
   o.getHoursAndMinutesFromMinutes = function (minutes) {
     var hours = Math.floor(minutes / 60);

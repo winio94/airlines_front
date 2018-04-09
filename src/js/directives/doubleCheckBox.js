@@ -13,6 +13,6 @@ app.directive('ngDoubleCheckBox', function () {
       'labelComment': '@?',
       'model': '='
     },
-    templateUrl: 'src/html/doubleCheckBox.html'
+    templateUrl: 'doubleCheckBox.html'
   }
 });
