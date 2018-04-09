@@ -5,9 +5,9 @@ cache:
   directories:
   - node_modules
 script:
-  - npm clean
-  - npm build
-  - npm copy-resources
+  - npm run clean
+  - npm run build
+  - npm run copy-resources
 local_dir: src
 deploy:
   provider: pages
