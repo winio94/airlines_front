@@ -1,4 +1,5 @@
 var app = angular.module("mainModule", [
+  'app.config',
   'ngAnimate',
   'ngMessages',
   'ngRoute',
@@ -108,18 +109,18 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
                   templateUrl: "customer_reservation_page.html",
                   controller: "CustomerCtrl",
                   resolve: {
-                    customerData: function (customerInitialDataService) {
+                    customerData: ['customerInitialDataService', function (customerInitialDataService) {
                       return customerInitialDataService();
-                    }
+                    }]
                   }
                 })
                 .when("/customers/:id/account", {
                   templateUrl: "customer_account_page.html",
                   controller: "CustomerCtrl",
                   resolve: {
-                    customerData: function (customerInitialDataService) {
+                    customerData: ['customerInitialDataService', function (customerInitialDataService) {
                       return customerInitialDataService();
-                    }
+                    }]
                   }
                 })
                 .when("/unathorized", {
@@ -333,4 +334,9 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
 // for nested ng-view working properly
 app.run(['$route', function ($route) {
 
+}]);
+
+//environment configuration
+app.run(['$rootScope', 'appBaseHref', function ($rootScope, appBaseHref) {
+  $rootScope.appBaseHref = appBaseHref;
 }]);
