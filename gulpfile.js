@@ -5,6 +5,7 @@ var usemin = require('gulp-usemin');
 var minifyHtml = require('gulp-minify-html');
 var rev = require('gulp-rev');
 var browserSync = require('browser-sync').create();
+var gulpNgConfig = require('gulp-ng-config');
 
 function copyCss() {
   return gulp.src(
@@ -83,4 +84,33 @@ gulp.task('browser-sync', function () {
   });
 });
 
-gulp.task('run-all', ['clean', 'build', 'copyResources', 'browser-sync']);
+gulp.task('set-up-dev-constants', function () {
+  return gulp.src('config/dev/config.json')
+             .pipe(gulpNgConfig('app.config'))
+             .pipe(gulp.dest('config'));
+});
+
+gulp.task('set-up-production-constants', function () {
+  return gulp.src('config/production/config.json')
+             .pipe(gulpNgConfig('app.config'))
+             .pipe(usemin({
+               js: [uglify(), 'concat', rev()]
+             }))
+             .pipe(gulp.dest('config'));
+});
+
+gulp.task('run-all-dev', [
+  'clean',
+  'set-up-dev-constants',
+  'build',
+  'copyResources',
+  'browser-sync'
+]);
+
+gulp.task('run-all-production', [
+  'clean',
+  'set-up-production-constants',
+  'build',
+  'copyResources',
+  'browser-sync'
+]);
